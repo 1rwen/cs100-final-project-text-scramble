@@ -10,10 +10,10 @@
  > * language/tools: c++, possible gui tentatively (such as qt)
  > * input - user typing  /// output - score for game, accuracy percentage, words per minute output, most commonly missed chracters, most frequent errors
  > * features
- > * typing feedback/analysis : determine metrics such as typing speed, accuracy, common errors, avg time to complete passage (based on modes)
- > * different test modes: timed passage, how many words can be typed in a minute or two minutes or other time periods, multiple difficulties of passages, blind typing (where user input is hidden for the duration of the test), themed passages
->  * shooting for fun game modes: timed mode (ex: type given word in 5 seconds to get a point, three failed attempts ends game), race against bot
->  * try for basic gui if enough time: echo text as user types next to passage and color code green/red for correct or incorrect spelling
+ >   * typing feedback/analysis : determine metrics such as typing speed, accuracy, common errors, avg time to complete passage (based on modes)
+ >   * different test modes: timed passage, how many words can be typed in a minute or two minutes or other time periods, multiple difficulties of passages, blind typing (where user input is hidden for the duration of the test), themed passages
+ >   * shooting for fun game modes: timed mode (ex: type given word in 5 seconds to get a point, three failed attempts ends game), race against bot
+ >   * try for basic gui if enough time: echo text as user types next to passage and color code green/red for correct or incorrect spelling
 
  > ## Phase II
  > In addition to completing the "User Interface Specification" and "Class Diagram" sections below, you will need to:
