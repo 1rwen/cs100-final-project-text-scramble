@@ -1,9 +1,9 @@
 # \<Text Scramble\>
  
 > Authors: \<[Brandon Vo](https://github.com/bxnvo)
-> [Matthew Chun] (https://github.com/matthwchun)
-> [Randall Nguyen] (https://github.com/1rwen)
-> [Willa Ralston] (https://github.com/chairfu)\>
+> [Matthew Chun](https://github.com/matthwchun)
+> [Randall Nguyen](https://github.com/1rwen)
+> [Willa Ralston](https://github.com/chairfu)\>
 
 ## Project Description
  > * This is important because it develops useful skills for coding such as accuracy and speed which is useful for completing tasks quickly. Furthermore, typing is an important part of computer literacy and practice can help groups from kids to adults in computer classes. In addition, typing tests that check for mistakes while timed check your ability to read quickly and spelling accurately. Comfortability with typing can enhance productivity, increase confidence and aptitude with digital tools, and reduce typing fatigue by reducing the need to look at the keyboard while working. Overall, typing tests are a fun way for people to engage with typing practice that has useful metrics and can enhance your time spent online. 
