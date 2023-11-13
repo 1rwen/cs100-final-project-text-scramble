@@ -1,5 +1,6 @@
 #include <string>
 #include <map>
+#include <vector>
 
 using namespace std;
 
@@ -9,12 +10,14 @@ class Profile {
 
         //this username clarifies what we'll be reading and writing to.
         string username;
-        bool userFile;
-        void createUsernamesFile();
+        vector<string> usernameList;
+        //void createUsernamesFile();
+        bool search(string&);
+        void printNames();
     
     public:
 
-        Profile() : username(""), userFile(false) {}
+        Profile() : username(""), usernameList(0) {}
 
         void chooseProfile();
         void createProfile();
