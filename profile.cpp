@@ -120,6 +120,14 @@ void Profile::createProfile() {
 
     usernameList.push_back(newName);
 
+    //we'll need to create the files in a very specific order
+    //like wpm--acc--errors--wins--losses (where the -- is a space)
+
+    string newUserFileName = newName + ".data";
+
+    ofstream newFile(newUserFileName);
+    newFile.close();
+
 }
 
 void Profile::printNames() {
@@ -138,6 +146,7 @@ void Profile::printNames() {
 
 //     //file that holds usernames is created, 
 //     ofstream usernamesOut("usernamesFile.txt");
+
 //     userFile = true;
 
 //     cout << "Enter your new Username: " << endl;
