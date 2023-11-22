@@ -46,49 +46,12 @@ void Profile::chooseProfile() {
 
     }
 
+    setUsername(userSelectInput);
+
     //opens the usernames file if one exists, creates one if otherwise.  
     //if (!userFile) {createUsernamesFile();}
 
-
-    cout << "Please select a profile: " << endl;
-
-    //usernames file will then be read and displayed
-    while (readUserFile >> readName) {
-
-        cout << readName << endl;
-        
-    }
-
     readUserFile.close();
-
-    //the user will have to type in a matching username to select it.  Then, that username's file will be opened.
-    string userToSelect;
-    getline(cin, userToSelect);
-
-    ifstream compareUserFile("usernamesFile.txt");
-    bool found = false;
-
-    // while (compareUserFile >> readName) {
-
-    //     // cout << "current readName is: " << readName << endl;
-    //     // cout << "current compare char is: " << userToSelect << endl;
-
-    //     if (userToSelect == readName) {
-            
-    //         //cout << "here" << endl;
-    //         setUsername(readName);
-    //         found = true;
-    //         break;
-
-    //     }
-
-    // }
-
-    // while (!found) {
-
-    //     cout << "invalid, please try again" << endl;
-
-
     // }
     //if the user does not type in the name correctly, or types one that doesn't exist, an error
     //message will print ("invalid name, please try again") and prompt them to create a new profile if they want
@@ -114,12 +77,22 @@ bool Profile::search(string& userSelectInput) {
 
     // }
 
+    ifstream compareUserFile("usernamesFile.txt");
+
+    if (compareUserFile.fail()) {
+
+        cout << "error opening file" << endl;
+
+    }
+
+    string readName;
+
     while (compareUserFile >> readName) {
 
         // cout << "current readName is: " << readName << endl;
         // cout << "current compare char is: " << userToSelect << endl;
 
-        if (userToSelect == readName) {
+        if (userSelectInput == readName) {
             
             //cout << "here" << endl;
             setUsername(readName);
@@ -128,7 +101,8 @@ bool Profile::search(string& userSelectInput) {
         }
 
     }
-
+    
+    compareUserFile.close();
     //this assumes that the usernames didn't match
     return false;
 
@@ -141,7 +115,16 @@ void Profile::createProfile() {
     cout << "Please enter your new username: " << endl;
     getline(cin, newName);
 
-    usernameList.push_back(newName);
+    ofstream inUsernamesFile("usernamesFile.txt", fstream::app);
+
+    if (inUsernamesFile.fail()) {
+
+        cout << "There was an error opening the file" << endl;
+
+    }
+
+    inUsernamesFile << newName << endl;
+    inUsernamesFile.close();
 
     //we'll need to create the files in a very specific order
     //like wpm--acc--errors--wins--losses (where the -- is a space)
@@ -155,11 +138,22 @@ void Profile::createProfile() {
 
 void Profile::printNames() {
 
-    // for (unsigned i = 0; i < usernameList.size(); ++i) {
+    ifstream printUsernames("usernamesFile.txt");
 
-    //     cout << usernameList.at(i) << endl;
+    if (printUsernames.fail()) {
 
-    // }
+        cout << "Error opening file" << endl;
+
+    }
+
+    string nameToPrint;
+    while (printUsernames >> nameToPrint) {
+
+        cout <<  nameToPrint << endl;
+
+    }
+
+    printUsernames.close();
 
 }
 
@@ -169,8 +163,6 @@ void Profile::createUsernamesFile () {
 
     //file that holds usernames is created, 
     ofstream usernamesOut("usernamesFile.txt");
-
-    userFile = true;
 
     cout << "Enter your new Username: " << endl;
     getline(cin, newUser);
