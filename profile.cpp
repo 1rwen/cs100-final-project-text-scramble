@@ -7,11 +7,23 @@ using namespace std;
 
 void Profile::chooseProfile() {
 
-    if (usernameList.empty()) {
+    // if (usernameList.empty()) {
 
-        cout << "No profiles exist, please create one." << endl;
+    //     cout << "No profiles exist, please create one." << endl;
 
-        createProfile();
+    //     createProfile();
+
+    // }
+
+    ifstream readUserFile;
+    string readName;
+
+    readUserFile.open("usernamesFile.txt");
+
+    if (readUserFile.fail()) {
+
+        cout << "usernames file doesn't exist, creating one" << endl;
+        createUsernamesFile();
 
     }
 
@@ -35,37 +47,26 @@ void Profile::chooseProfile() {
     }
 
     //opens the usernames file if one exists, creates one if otherwise.  
-    // if (!userFile) {createUsernamesFile();}
+    //if (!userFile) {createUsernamesFile();}
 
-    // ifstream readUserFile;
-    // string readName;
 
-    // readUserFile.open("usernamesFile.txt");
+    cout << "Please select a profile: " << endl;
 
-    // if (readUserFile.fail()) {
+    //usernames file will then be read and displayed
+    while (readUserFile >> readName) {
 
-    //     cout << "trouble reading file" << endl;
-    //     return;
-
-    // }
-
-    // cout << "Please select a profile: " << endl;
-
-    // //usernames file will then be read and displayed
-    // while (readUserFile >> readName) {
-
-    //     cout << readName << endl;
+        cout << readName << endl;
         
-    // }
+    }
 
-    // readUserFile.close();
+    readUserFile.close();
 
-    // //the user will have to type in a matching username to select it.  Then, that username's file will be opened.
-    // string userToSelect;
-    // getline(cin, userToSelect);
+    //the user will have to type in a matching username to select it.  Then, that username's file will be opened.
+    string userToSelect;
+    getline(cin, userToSelect);
 
-    // ifstream compareUserFile("usernamesFile.txt");
-    // bool found = false;
+    ifstream compareUserFile("usernamesFile.txt");
+    bool found = false;
 
     // while (compareUserFile >> readName) {
 
@@ -83,9 +84,10 @@ void Profile::chooseProfile() {
 
     // }
 
-    // if (!found) {
+    // while (!found) {
 
-    //     cout << ""
+    //     cout << "invalid, please try again" << endl;
+
 
     // }
     //if the user does not type in the name correctly, or types one that doesn't exist, an error
@@ -93,13 +95,34 @@ void Profile::chooseProfile() {
 
 }
 
+
+
+//FOR THE HELPER FUNCTIONS!!! pass in an fstream parameter so that we don't have to keep remaking them
+
+
 bool Profile::search(string& userSelectInput) {
 
-    for (unsigned i = 0; i < usernameList.size(); ++i) {
 
-        if (userSelectInput == usernameList.at(i)) {
+    // for (unsigned i = 0; i < usernameList.size(); ++i) {
 
-            setUsername(usernameList.at(i));
+    //     if (userSelectInput == usernameList.at(i)) {
+
+    //         setUsername(usernameList.at(i));
+    //         return true;
+
+    //     }
+
+    // }
+
+    while (compareUserFile >> readName) {
+
+        // cout << "current readName is: " << readName << endl;
+        // cout << "current compare char is: " << userToSelect << endl;
+
+        if (userToSelect == readName) {
+            
+            //cout << "here" << endl;
+            setUsername(readName);
             return true;
 
         }
@@ -132,29 +155,29 @@ void Profile::createProfile() {
 
 void Profile::printNames() {
 
-    for (unsigned i = 0; i < usernameList.size(); ++i) {
+    // for (unsigned i = 0; i < usernameList.size(); ++i) {
 
-        cout << usernameList.at(i) << endl;
+    //     cout << usernameList.at(i) << endl;
 
-    }
+    // }
 
 }
 
-// void Profile::createUsernamesFile () {
+void Profile::createUsernamesFile () {
 
-//     string newUser;
+    string newUser;
 
-//     //file that holds usernames is created, 
-//     ofstream usernamesOut("usernamesFile.txt");
+    //file that holds usernames is created, 
+    ofstream usernamesOut("usernamesFile.txt");
 
-//     userFile = true;
+    userFile = true;
 
-//     cout << "Enter your new Username: " << endl;
-//     getline(cin, newUser);
-//     //cin.ignore();
+    cout << "Enter your new Username: " << endl;
+    getline(cin, newUser);
+    //cin.ignore();
 
-//     usernamesOut << newUser << endl;
+    usernamesOut << newUser << endl;
 
-//     usernamesOut.close();
+    usernamesOut.close();
 
-// }
+}
