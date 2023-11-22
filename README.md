@@ -18,7 +18,7 @@ features
 ## User Interface Specification
 
 ### Navigation Diagram
-![navigation diagram](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/blob/master/Typing%20Project%20User%20Interface%20Specification.png?raw=true)
+![navigation diagram](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/blob/344a46eacd54e7efbcc87465d3b8bc92cf590cd5/Typing%20Project%20User%20Interface%20Specification%20(1).png)
 
 ### Screen Layouts
 ![IMG_0581](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/117537259/5597d20c-4809-49e6-adfe-8eac9e41eb0a)
