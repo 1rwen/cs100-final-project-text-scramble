@@ -27,10 +27,16 @@ using namespace std;
 
 
 int main () {
+    cout << "\x1b[sgoing to save cursor here" << endl;
     cout << "\x1b[37mAlright yall testing" << endl;
     cout << "\x1b[31mHey yall this is wrong" << endl;
     cout << "\x1b[32mHey yall this is right" << endl;
     cout << "\x1b[37mAlright yall back to normal" << endl;
+    //cout << "\x1b[?25lI think cursor should be invisible" << endl;
+    cout << "\x1b?25hOkay cursor back on" << endl;
+    cout << "\x1b[ucursor should've gone back to the beginning and overwrote prev msg" << endl;
+    cout << "\x1b[2J"; //clear screen
+
 };
 
 //#endif 
