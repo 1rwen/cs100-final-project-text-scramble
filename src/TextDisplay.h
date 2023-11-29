@@ -1,19 +1,17 @@
-/* #ifndef TEXTDISPLAY_HPP
-#define TEXTDISPLAY_HPP */
 
-#include <iostream>
+
+
 #include <string>
 #include <vector>
 
-//use ansi codes to change text color as running
-class TextDisplay() {
+
+class TextDisplay {
     private:
-        std::string passage;
-        std::string userInput;
-        std::vector<std::string> wordList;
+        std::string passage = "hey i just wanted to check in";
+        std::string userInput = "";
+        std::vector<std::string> wordList = {"James","Monica","Chris","testing","shoot"};
     public:
         double timedDisplay();
         int lifeDisplay();
 };
 
-//#endif 
