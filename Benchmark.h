@@ -2,6 +2,11 @@
 #define BENCHMARK_H
 
 #include "Mode.h"
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <chrono>
 
 using namespace std;
 
@@ -12,6 +17,10 @@ class Benchmark : Mode {
     string passageType;
     string passage;
     int wordCount;
+    double wpm;
+    double accuracy;
+    int errors;
+    double time;
 
   public:
     Benchmark() {
@@ -21,6 +30,10 @@ class Benchmark : Mode {
         wordCount = 0;
     }
     void BenchmarkStart();
+    double calcWPM();
+    double calcAccuracy();
+    void addError();
+    void setTime();
     // void SetCurrentTime();
     // void displayPrevTimes() const;
     // int getWordCount() const;

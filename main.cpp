@@ -2,15 +2,17 @@
 #include "Benchmark.h"
 #include "BotRace.h"
 #include "Attrition.h"
+// #include "stats.h"
 
 using namespace std;
+using namespace std::chrono;
 
 //Main should be updated as the sort of starting menu of the program, it accesses all other gamemodes through profile users.
 //Data will be stored to the user profile and kept in local files so that it can be updated even after the program ends.
 
 int main () {
     char input;
-    Profile UserA;
+    //Profile UserA;
     Benchmark userA;
     // Attrition userB;
     // BotRace userC;
