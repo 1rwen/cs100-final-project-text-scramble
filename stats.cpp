@@ -3,6 +3,15 @@
 #include <string>
 #include <map>
 
+// void stats::updateAvg(fstream& ioFS) {
+//   ifstream inFS("avgWPM.txt");
+//   if (inFS.peek() == ifstream::eof()){
+//     ofstream outFS;
+//     outFS.open("avgWPM.txt");
+
+//   }
+
+// }
 void stats::outputStats() {
   cout << "Here are your stats..." << endl;
   cout << "WPM (Words per minute): " << getWPM() << endl;

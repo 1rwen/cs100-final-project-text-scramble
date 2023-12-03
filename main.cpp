@@ -4,7 +4,6 @@
 #include <string>
 #include <chrono>
 
-
 using namespace std;
 using namespace std::chrono;
 
@@ -70,11 +69,22 @@ int main () {
     duration<double> secondsInMinute = duration<double>(60.0);
     duration<double> numberOfWords = duration<double>(10.0);
     duration<double> WPM = duration<double>(numberOfWords / (timeInterval / secondsInMinute));
-    
-    cout << "Time taken: " << timeInterval.count() << endl;
-    cout << "WPM: " << WPM.count() << endl;
-    cout << "Accuracy: " << static_cast<double>((prompt.size() - errors)) / prompt.size()  * 100 << " %" << endl;
-    cout << "Errors: " << errors << endl;
+
+    double Accuracy = static_cast<double>((prompt.size() - errors)) / prompt.size()  * 100;
+
+    if (timeInterval < duration<double>(3.0)){
+      cout << "Time taken: INVALID TEST" << endl;
+      cout << "WPM: INVALID TEST" << endl;
+      cout << "Accuracy: INVALID TEST" << endl;
+      cout << "Errors: INVALID TEST" << endl;
+    }
+
+    else {
+      cout << "Time taken: " << timeInterval.count() << endl;
+      cout << "WPM: " << WPM.count() << endl;
+      cout << "Accuracy: " << Accuracy << " %" << endl;
+      cout << "Errors: " << errors << endl;
+    }
     
   }
 
@@ -184,9 +194,6 @@ int main () {
     cout << "Errors: " << errors << endl;
       
   }
-
-
-
 
   return 0;
 }

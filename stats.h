@@ -19,7 +19,6 @@ class stats {
     vector<pair<int, int>> botRaceRecord; // might have to have to hardcode
     vector<pair<int, int>> UserRaceRecord;
   public: 
-  
     void setWPM (double _wpm) { wpm = _wpm; }; // done
     void setAccuracy (double _accuracy) { accuracy = _accuracy; }; // done
     void addError (char _missedChar, int _frequency); // done
