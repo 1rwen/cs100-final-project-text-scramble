@@ -16,6 +16,7 @@ void Benchmark::BenchmarkStart() {
 
     if (userInput == 1) {
 
+        this->wordCount = duration<double>(10.0);
         cin.clear();
         cin.ignore();
 
@@ -47,28 +48,32 @@ void Benchmark::BenchmarkStart() {
 
         auto stop = high_resolution_clock::now();
 
-        int errors = 0;
+        this->accuracy = calcAccuracy(prompt, userString);
+        // int errors = 0;
 
-        for (auto i(prompt.begin() ); i != prompt.end(); ++i){ // reads and compares the system prompt vs the user string
-        if (*i != *(userString.begin() + distance(prompt.begin() , i))){ // if the current char (i) is not equal to the userString at i (beginning of userString (0) + distance of i)
-            ++errors;
-        } 
-        }
-
-        duration<double> timeInterval = stop - start;
-        duration<double> secondsInMinute = duration<double>(60.0);
-        duration<double> numberOfWords = duration<double>(10.0);
-        duration<double> WPM = duration<double>(numberOfWords / (timeInterval / secondsInMinute));
         
-        cout << "Time taken: " << timeInterval.count() << endl;
-        cout << "WPM: " << WPM.count() << endl;
-        cout << "Accuracy: " << static_cast<double>((prompt.size() - errors)) / prompt.size()  * 100 << " %" << endl;
-        cout << "Errors: " << errors << endl;
+        // for (auto i(prompt.begin() ); i != prompt.end(); ++i){ // reads and compares the system prompt vs the user string
+        // if (*i != *(userString.begin() + distance(prompt.begin() , i))){ // if the current char (i) is not equal to the userString at i (beginning of userString (0) + distance of i)
+        //     ++errors;
+        // } 
+        // }
+
+        // duration<double> timeInterval = stop - start;
+        // duration<double> secondsInMinute = duration<double>(60.0);
+        // duration<double> numberOfWords = duration<double>(10.0);
+        // duration<double> WPM = duration<double>(numberOfWords / (timeInterval / secondsInMinute));
+        
+        this->wpm = calcWPM(start, stop);
+
+        cout << "Time taken: " << time.count() << endl;
+        cout << "WPM: " << wpm.count() << endl;
+        cout << "Accuracy: " << this->accuracy << " %" << endl;
+        cout << "Errors: " << this->errors << endl;
         
     }
 
     else if (userInput == 2) {
-        
+        this->wordCount = duration<double>(25.0);
         cin.clear();
         cin.ignore();
         
@@ -100,29 +105,33 @@ void Benchmark::BenchmarkStart() {
 
         auto stop = high_resolution_clock::now();
 
-        int errors = 0;
+        this->accuracy = calcAccuracy(prompt, userString);
+        // int errors = 0;
 
-        for (auto i(prompt.begin() ); i != prompt.end(); ++i){ // reads and compares the system prompt vs the user string
-        if (*i != *(userString.begin() + distance(prompt.begin() , i))){ // if the current char (i) is not equal to the userString at i (beginning of userString (0) + distance of i)
-            ++errors;
-        } 
-        }
+        
+        // for (auto i(prompt.begin() ); i != prompt.end(); ++i){ // reads and compares the system prompt vs the user string
+        // if (*i != *(userString.begin() + distance(prompt.begin() , i))){ // if the current char (i) is not equal to the userString at i (beginning of userString (0) + distance of i)
+        //     ++errors;
+        // } 
+        // }
 
-        duration<double> timeInterval = stop - start;
-        duration<double> secondsInMinute = duration<double>(60.0);
-        duration<double> numberOfWords = duration<double>(25.0);
-        duration<double> WPM = duration<double>(numberOfWords / (timeInterval / secondsInMinute));
+        // duration<double> timeInterval = stop - start;
+        // duration<double> secondsInMinute = duration<double>(60.0);
+        // duration<double> numberOfWords = duration<double>(10.0);
+        // duration<double> WPM = duration<double>(numberOfWords / (timeInterval / secondsInMinute));
+        
+        this->wpm = calcWPM(start, stop);
 
-        cout << "Time taken: " << timeInterval.count() << endl;
-        cout << "WPM: " << WPM.count() << endl;
-        cout << "Accuracy: " << static_cast<double>((prompt.size() - errors)) / prompt.size()  * 100 << " %" << endl;
-        cout << "Errors: " << errors << endl;
+        cout << "Time taken: " << time.count() << endl;
+        cout << "WPM: " << wpm.count() << endl;
+        cout << "Accuracy: " << this->accuracy << " %" << endl;
+        cout << "Errors: " << this->errors << endl;
     }
 
     
 
     else if (userInput == 3) {
-
+        this->wordCount = duration<double>(50.0);
         cin.clear();
         cin.ignore();
         
@@ -154,44 +163,58 @@ void Benchmark::BenchmarkStart() {
 
         auto stop = high_resolution_clock::now();
 
-        int errors = 0;
+        this->accuracy = calcAccuracy(prompt, userString);
+        // int errors = 0;
 
-        for (auto i(prompt.begin() ); i != prompt.end(); ++i){ // reads and compares the system prompt vs the user string
-        if (*i != *(userString.begin() + distance(prompt.begin() , i))){ // if the current char (i) is not equal to the userString at i (beginning of userString (0) + distance of i)
-            ++errors;
-        } 
-        }
+        
+        // for (auto i(prompt.begin() ); i != prompt.end(); ++i){ // reads and compares the system prompt vs the user string
+        // if (*i != *(userString.begin() + distance(prompt.begin() , i))){ // if the current char (i) is not equal to the userString at i (beginning of userString (0) + distance of i)
+        //     ++errors;
+        // } 
+        // }
 
-        duration<double> timeInterval = stop - start;
-        duration<double> secondsInMinute = duration<double>(60.0);
-        duration<double> numberOfWords = duration<double>(50.0);
-        duration<double> WPM = duration<double>(numberOfWords / (timeInterval / secondsInMinute));
+        // duration<double> timeInterval = stop - start;
+        // duration<double> secondsInMinute = duration<double>(60.0);
+        // duration<double> numberOfWords = duration<double>(10.0);
+        // duration<double> WPM = duration<double>(numberOfWords / (timeInterval / secondsInMinute));
+        
+        this->wpm = calcWPM(start, stop);
 
-        cout << "Time taken: " << timeInterval.count() << endl;
-        cout << "WPM: " << WPM.count() << endl;
-        cout << "Accuracy: " << static_cast<double>((prompt.size() - errors)) / prompt.size()  * 100 << " %" << endl;
-        cout << "Errors: " << errors << endl;
+        cout << "Time taken: " << time.count() << endl;
+        cout << "WPM: " << wpm.count() << endl;
+        cout << "Accuracy: " << this->accuracy << " %" << endl;
+        cout << "Errors: " << this->errors << endl;
         
     }
     return;
 }
 
-double Benchmark::calcWPM() {
-    
+duration<double> Benchmark::calcWPM(std::chrono::time_point<std::chrono::high_resolution_clock> start, std::chrono::time_point<std::chrono::high_resolution_clock> stop) {
+    duration<double> timeInterval = calcTime(start, stop);
+    duration<double> secondsInMinute = duration<double>(60.0);
+    duration<double> numberOfWords = wordCount;
+    duration<double> WPM = duration<double>(numberOfWords / (timeInterval / secondsInMinute));
+    return WPM;
+}
+
+double Benchmark::calcAccuracy(string prompt, string userString) {
+    addErrors(prompt, userString);
+    return static_cast<double>((prompt.size() - this->errors)) / prompt.size()  * 100;
+}
+
+void Benchmark::addErrors(string prompt, string userString) {
+    this->errors = 0;
+        
+    for (auto i(prompt.begin() ); i != prompt.end(); ++i){ // reads and compares the system prompt vs the user string
+    if (*i != *(userString.begin() + distance(prompt.begin() , i))){ // if the current char (i) is not equal to the userString at i (beginning of userString (0) + distance of i)
+        ++errors;
+    } 
+    }
 
 }
 
-double Benchmark::calcAccuracy() {
-
-
-}
-
-void Benchmark::addError() {
-
-
-}
-
-void Benchmark::setTime() {
-
-
+duration<double> Benchmark::calcTime(std::chrono::time_point<std::chrono::high_resolution_clock> start, std::chrono::time_point<std::chrono::high_resolution_clock> stop) {
+    duration<double> timeInterval = stop - start;
+    this->time = timeInterval;
+    return timeInterval;
 }

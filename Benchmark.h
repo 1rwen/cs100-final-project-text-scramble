@@ -9,31 +9,34 @@
 #include <chrono>
 
 using namespace std;
+using namespace std::chrono;
 
 class Benchmark : Mode {
   private:
-    double currentTime;
+    // double currentTime;
     // vector<double> prevTimes;
-    string passageType;
-    string passage;
-    int wordCount;
-    double wpm;
+    // string passageType;
+    // string passage;
+    duration<double> wordCount;
+    duration<double> wpm;
     double accuracy;
     int errors;
-    double time;
+    duration<double> time;
 
   public:
     Benchmark() {
-        currentTime = 0.0;
-        passageType = "";
-        passage = "";
-        wordCount = 0;
+        time = duration<double>(0.0);
+        wordCount = duration<double>(0.0);
+        wpm = duration<double>(0.0);
+        accuracy = 0.0;
+        errors = 0;
+        time = duration<double>(0.0);
     }
     void BenchmarkStart();
-    double calcWPM();
-    double calcAccuracy();
-    void addError();
-    void setTime();
+    duration<double> calcWPM(std::chrono::time_point<std::chrono::high_resolution_clock> start, std::chrono::time_point<std::chrono::high_resolution_clock> stop);
+    double calcAccuracy(string prompt, string userString);
+    void addErrors(string prompt, string userString);
+    duration<double> calcTime(std::chrono::time_point<std::chrono::high_resolution_clock> start, std::chrono::time_point<std::chrono::high_resolution_clock> stop);
     // void SetCurrentTime();
     // void displayPrevTimes() const;
     // int getWordCount() const;
