@@ -1,19 +1,11 @@
 #include "profile.h"
 #include <iostream>
 #include <fstream>
-#include <vector>
+#include <cstdio>
 
 using namespace std;
 
 void Profile::chooseProfile() {
-
-    // if (usernameList.empty()) {
-
-    //     cout << "No profiles exist, please create one." << endl;
-
-    //     createProfile();
-
-    // }
 
     ifstream readUserFile;
     string readName;
@@ -65,18 +57,6 @@ void Profile::chooseProfile() {
 
 bool Profile::search(string& userSelectInput) {
 
-
-    // for (unsigned i = 0; i < usernameList.size(); ++i) {
-
-    //     if (userSelectInput == usernameList.at(i)) {
-
-    //         setUsername(usernameList.at(i));
-    //         return true;
-
-    //     }
-
-    // }
-
     ifstream compareUserFile("usernamesFile.txt");
 
     if (compareUserFile.fail()) {
@@ -89,12 +69,8 @@ bool Profile::search(string& userSelectInput) {
 
     while (compareUserFile >> readName) {
 
-        // cout << "current readName is: " << readName << endl;
-        // cout << "current compare char is: " << userToSelect << endl;
-
         if (userSelectInput == readName) {
-            
-            //cout << "here" << endl;
+        
             setUsername(readName);
             return true;
 
@@ -126,12 +102,25 @@ void Profile::createProfile() {
     inUsernamesFile << newName << endl;
     inUsernamesFile.close();
 
+    createUserProfile(newName);
+
     //we'll need to create the files in a very specific order
     //like wpm--acc--errors--wins--losses (where the -- is a space)
 
-    string newUserFileName = newName + ".data";
+}
+
+void Profile::createUserProfile(string& newFileName) {
+
+    string newUserFileName = newFileName + ".data";
 
     ofstream newFile(newUserFileName);
+
+    for(unsigned i = 0; i < 5; ++i) {
+
+        newFile << 0 << endl;
+
+    }
+
     newFile.close();
 
 }
@@ -171,5 +160,14 @@ void Profile::createUsernamesFile () {
     usernamesOut << newUser << endl;
 
     usernamesOut.close();
+
+}
+
+void Profile::deleteProfile(string& userToDelete) {
+
+    username = userToDelete;
+    string toDeleteString = getUserFileName();
+
+    remove(toDeleteString.c_str());
 
 }
