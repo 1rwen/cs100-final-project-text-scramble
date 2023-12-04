@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 #include <map>
 #include <vector>
@@ -14,6 +16,8 @@ class Profile {
         void createUsernamesFile();
         bool search(string&);
         void printNames();
+
+        void createUserProfile(string&);
     
     public:
 
@@ -21,15 +25,10 @@ class Profile {
 
         void chooseProfile();
         void createProfile();
+        void deleteProfile(string&);
 
-        void setUsername(string newUsername) {username = newUsername;}
+        void setUsername(string& newUsername) {username = newUsername;}
         string getUsername() {return username;}
         string getUserFileName() {return username += ".data";}
-
-        //put these in the file specific class :P
-        // void setHistory(double, double, map<char, int>, int, int, int);
-        // void printHistory();
-        // void writeProfile();
-        // void readProfile();
 
 };
