@@ -37,10 +37,8 @@ void Benchmark::BenchmarkStart() {
             {
             getline (inFS,prompt);
             cout << prompt << endl; // the prompt that the system gives
-
             cout << endl;
             getline(cin, userString); // the prompt that user gives
-
             }
         inFS.close();
         }
