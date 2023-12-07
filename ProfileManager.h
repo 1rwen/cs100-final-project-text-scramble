@@ -20,7 +20,7 @@ class ProfileManager {
     
     public:
 
-        Profile() : username("") {}
+        ProfileManager() : username("") {}
 
         void chooseProfile();
         void createProfile();

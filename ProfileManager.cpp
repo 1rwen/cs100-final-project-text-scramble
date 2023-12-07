@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdio>
+#include <stdexcept>
 
 using namespace std;
 
@@ -14,8 +15,8 @@ void ProfileManager::chooseProfile() {
 
     if (readUserFile.fail()) {
 
-        cout << "usernames file doesn't exist, creating one" << endl;
         createUsernamesFile();
+        return;
 
     }
 
@@ -23,37 +24,29 @@ void ProfileManager::chooseProfile() {
     printNames();
 
     string userSelectInput;
+
+    cin.clear();
+    cin.ignore();
     getline(cin, userSelectInput);
 
-    bool found = search(userSelectInput);
+    bool userFound = search(userSelectInput);
 
-    while (!found) {
+    while (!userFound) {
 
         cout << "That profile does not exist, please try again." << endl;
 
         string userSelectInput;
         getline(cin, userSelectInput);
 
-        found = search(userSelectInput);
+        userFound = search(userSelectInput);
 
     }
 
     username = userSelectInput;
 
-    //opens the usernames file if one exists, creates one if otherwise.  
-    //if (!userFile) {createUsernamesFile();}
-
     readUserFile.close();
-    // }
-    //if the user does not type in the name correctly, or types one that doesn't exist, an error
-    //message will print ("invalid name, please try again") and prompt them to create a new profile if they want
-
+    
 }
-
-
-
-//FOR THE HELPER FUNCTIONS!!! pass in an fstream parameter so that we don't have to keep remaking them
-
 
 bool ProfileManager::search(const string& userSelectInput) {
 
@@ -61,7 +54,7 @@ bool ProfileManager::search(const string& userSelectInput) {
 
     if (compareUserFile.fail()) {
 
-        cout << "error opening file" << endl;
+        std::runtime_error("There was an error reading the file.");
 
     }
 
@@ -86,16 +79,20 @@ bool ProfileManager::search(const string& userSelectInput) {
 
 void ProfileManager::createProfile() {
 
-    //adds new username to the username vector
     string newName;
     cout << "Please enter your new username: " << endl;
+    
+    cin.clear();
+    cin.ignore();
     getline(cin, newName);
+
+    username = newName;
 
     ofstream inUsernamesFile("usernamesFile.txt", fstream::app);
 
     if (inUsernamesFile.fail()) {
 
-        cout << "There was an error opening the file" << endl;
+        std::runtime_error("There was an error reading the file.");
 
     }
 
@@ -104,18 +101,13 @@ void ProfileManager::createProfile() {
 
     createUserProfile(newName);
 
-    //we'll need to create the files in a very specific order
-    //like wpm--acc--errors--wins--losses (where the -- is a space)
-
 }
 
 void ProfileManager::createUserProfile(const string& newFileName) {
 
-    string newUserFileName = newFileName + ".txt";
+    ofstream newFile(newFileName + ".txt");
 
-    ofstream newFile(newUserFileName);
-
-    for(unsigned i = 0; i < 5; ++i) {
+    for (unsigned i = 0; i < 5; ++i) {
 
         newFile << 0 << endl;
 
@@ -131,14 +123,14 @@ void ProfileManager::printNames() {
 
     if (printUsernames.fail()) {
 
-        cout << "Error opening file" << endl;
+        std::runtime_error("There was an error reading the file.");
 
     }
 
     string nameToPrint;
     while (printUsernames >> nameToPrint) {
 
-        cout <<  nameToPrint << endl;
+        cout << nameToPrint << endl;
 
     }
 
@@ -153,11 +145,15 @@ void ProfileManager::createUsernamesFile () {
     //file that holds usernames is created, 
     ofstream usernamesOut("usernamesFile.txt");
 
-    cout << "Enter your new Username: " << endl;
-    getline(cin, newUser);
-    //cin.ignore();
+    if (usernamesOut.fail()) {
 
-    usernamesOut << newUser << endl;
+        std::runtime_error("There was an error reading the file.");
+
+    }
+
+    createProfile();
+
+    usernamesOut << username << endl;
 
     usernamesOut.close();
 

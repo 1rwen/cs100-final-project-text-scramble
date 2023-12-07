@@ -1,9 +1,10 @@
 #pragma once
 
 #include <string>
-#include "profile.h"
+#include <chrono>
 
 using namespace std;
+using namespace std::chrono;
 
 class ProfileUpdater {
 
@@ -26,13 +27,7 @@ class ProfileUpdater {
 
         ProfileUpdater(string profileName) : selectedProfile(profileName), fileToOpen(profileName + ".txt") {}
 
-        void setTotals(double, double, double, int, int);
+        void setTotals(const duration<double>&, double, const duration<double>&, int);
         void computeAverages();
 
-        // double getTotalWPM() {return totalWPM;}
-        // double getTotalAccuracy() {return totalAccuracy;}
-        // double getTotalTime() {return totalTime;}
-        // int getTotalErrors() {return totalErrors;}
-
-        //void setFileToOpen() {fileToOpen = selectedProfile + ".data";}
 };

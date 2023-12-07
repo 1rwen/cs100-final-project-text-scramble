@@ -2,10 +2,20 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <stdexcept>
+#include <chrono>
+
+using namespace std::chrono;
 
 void ProfileUpdater::readProfile() {
 
     ifstream profileData(fileToOpen.c_str());
+
+    if (profileData.fail()) {
+
+        std::runtime_error("There was an error reading the file.");
+
+    }
 
     profileData >> totalWPM;
     profileData >> totalAccuracy;
@@ -21,6 +31,12 @@ void ProfileUpdater::writeTotals() {
 
     ofstream writeNewTotals(fileToOpen.c_str());
 
+    if (writeNewTotals.fail()) {
+
+        std::runtime_error("There was an error reading the file.");
+
+    }
+
     writeNewTotals << totalWPM << endl;
     writeNewTotals << totalAccuracy << endl;
     writeNewTotals << totalTime << endl;
@@ -31,17 +47,15 @@ void ProfileUpdater::writeTotals() {
 
 }
 
-//use "filename.c_str()" to open files 
-
-void ProfileUpdater::setTotals(double newWPM, double newAccuracy, double newTime, int newErrors, int newTestCount) {
+void ProfileUpdater::setTotals(const duration<double>& newWPM, double newAccuracy, const duration<double>& newTime, int newErrors) {
 
     readProfile();
 
-    totalWPM += newWPM;
+    totalWPM += duration<double>(newWPM).count();
     totalAccuracy += newAccuracy;
-    totalTime += newTime;
+    totalTime += duration<double>(newTime).count();
     totalErrors += newErrors;
-    totalTestCount += newTestCount;
+    totalTestCount++;
 
     writeTotals();
 
