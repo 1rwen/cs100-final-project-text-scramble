@@ -1,203 +1,53 @@
-#include <cstdlib>
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <chrono>
+#include "Mode.h"
+#include "Benchmark.h"
+#include "BotRace.h"
+#include "Attrition.h"
+// #include "stats.h"
 
 using namespace std;
 using namespace std::chrono;
 
-// wordsPerMinute = numberOfWords / timeTaken (in minutes) i.e. 200 words / 1 min = 200 wpm 
-
-// accuracy = net WPM (number of words you typed correctly) / gross WPM (numbers of words you typed including errors)  * 100 (to give a percentage)
-
-// start testing with just 60 secs worth of words
+//Main should be updated as the sort of starting menu of the program, it accesses all other gamemodes through profile users.
+//Data will be stored to the user profile and kept in local files so that it can be updated even after the program ends.
 
 int main () {
-  cout << "=Benchmark Mode=" << endl;
-  cout << "Select # of Words..." << endl;
-  cout << "1. 10 Words" << endl;
-  cout << "2. 25 Words" << endl;
-  cout << "3. 50 Words" << endl;
-
-  int userInput;
-
-  cin >> userInput;  
-
-  if (userInput == 1) {
-
-    cin.clear();
-    cin.ignore();
-
-    auto start = high_resolution_clock::now();
-
-    string prompt;
-    string userString;
-    ifstream inFS("10-words-prompt.txt"); // might require a file for each prompt (10 , 25, 50)
-
-    if (!inFS.is_open()) {
-      cout << "Error opening file" << endl;
-      return 1;
-    }
-
-    else
-      {
-        while (inFS.good())
-        {
-          getline (inFS,prompt);
-          cout << prompt << endl; // the prompt that the system gives
-
-          cout << endl;
-          getline(cin, userString); // the prompt that user gives
-
+    char input;
+    //Profile UserA;
+    Benchmark userA;
+    // Attrition userB;
+    // BotRace userC;
+    do {
+        cout << endl;
+        if (input == 'a') {
+            cout << "Entering Profile Editor..." << endl;
+            //createProfile();
         }
-      inFS.close();
-      }
-
-
-    auto stop = high_resolution_clock::now();
-
-    int errors = 0;
-
-    for (auto i(prompt.begin() ); i != prompt.end(); ++i){ // reads and compares the system prompt vs the user string
-      if (*i != *(userString.begin() + distance(prompt.begin() , i))){ // if the current char (i) is not equal to the userString at i (beginning of userString (0) + distance of i)
-        ++errors;
-      } 
-    }
-
-    duration<double> timeInterval = stop - start;
-    duration<double> secondsInMinute = duration<double>(60.0);
-    duration<double> numberOfWords = duration<double>(10.0);
-    duration<double> WPM = duration<double>(numberOfWords / (timeInterval / secondsInMinute));
-
-    double Accuracy = static_cast<double>((prompt.size() - errors)) / prompt.size()  * 100;
-
-    if (timeInterval < duration<double>(3.0)){
-      cout << "Time taken: INVALID TEST" << endl;
-      cout << "WPM: INVALID TEST" << endl;
-      cout << "Accuracy: INVALID TEST" << endl;
-      cout << "Errors: INVALID TEST" << endl;
-    }
-
-    else {
-      cout << "Time taken: " << timeInterval.count() << endl;
-      cout << "WPM: " << WPM.count() << endl;
-      cout << "Accuracy: " << Accuracy << " %" << endl;
-      cout << "Errors: " << errors << endl;
-    }
-    
-  }
-
-  else if (userInput == 2) {
-    
-    cin.clear();
-    cin.ignore();
-    
-    auto start = high_resolution_clock::now();
-
-    string prompt;
-    string userString;
-    ifstream inFS("25-words-prompt.txt"); // might require a file for each prompt (10 , 25, 50)
-
-    if (!inFS.is_open()) {
-      cout << "Error opening file" << endl;
-      return 1;
-    }
-
-    else
-      {
-        while (inFS.good())
-        {
-          getline (inFS,prompt);
-          cout << prompt << endl; // the prompt that the system gives
-
-          cout << endl;
-          getline(cin, userString); // the prompt that user gives
-
+        if (input == 'b') {
+            cout << "Entering Benchmark..." << endl;
+            userA.BenchmarkStart();
         }
-      inFS.close();
-      }
-
-
-    auto stop = high_resolution_clock::now();
-
-    int errors = 0;
-
-    for (auto i(prompt.begin() ); i != prompt.end(); ++i){ // reads and compares the system prompt vs the user string
-      if (*i != *(userString.begin() + distance(prompt.begin() , i))){ // if the current char (i) is not equal to the userString at i (beginning of userString (0) + distance of i)
-        ++errors;
-      } 
-    }
-
-    duration<double> timeInterval = stop - start;
-    duration<double> secondsInMinute = duration<double>(60.0);
-    duration<double> numberOfWords = duration<double>(25.0);
-    duration<double> WPM = duration<double>(numberOfWords / (timeInterval / secondsInMinute));
-
-    cout << "Time taken: " << timeInterval.count() << endl;
-    cout << "WPM: " << WPM.count() << endl;
-    cout << "Accuracy: " << static_cast<double>((prompt.size() - errors)) / prompt.size()  * 100 << " %" << endl;
-    cout << "Errors: " << errors << endl;
-  }
-
-  
-
-  else if (userInput == 3) {
-
-    cin.clear();
-    cin.ignore();
-    
-    auto start = high_resolution_clock::now();
-
-    string prompt;
-    string userString;
-    ifstream inFS("50-words-prompt.txt"); // might require a file for each prompt (10 , 25, 50)
-
-    if (!inFS.is_open()) {
-      cout << "Error opening file" << endl;
-      return 1;
-    }
-
-    else
-      {
-        while (inFS.good())
-        {
-          getline (inFS,prompt);
-          cout << prompt << endl; // the prompt that the system gives
-
-          cout << endl;
-          getline(cin, userString); // the prompt that user gives
-
+        if (input == 'c') {
+            cout << "Entering Attrition..." << endl;
+            // userB.AttritionStart();
         }
-      inFS.close();
-      }
+        if (input == 'd') {
+            cout << "Entering Bot Race..." << endl; 
+            // userC.BotRaceStart();           
+        }
+        if (input == 'q') {
+            cout << "Quitting..." << endl;
+            return 0;
+        }
+        cout << "TYPING TEST" << endl << endl;
+        cout << "a. Create/Edit a Profile" << endl;
+        cout << "b. Benchmark Test" << endl;
+        cout << "c. Attrition" << endl;
+        cout << "d. Bot Race" << endl;
+        cout << "q. Quit" << endl;
+        cout << "Please Select An Option: ";
+    } while (cin >> input);
 
-
-    auto stop = high_resolution_clock::now();
-
-    int errors = 0;
-
-    for (auto i(prompt.begin() ); i != prompt.end(); ++i){ // reads and compares the system prompt vs the user string
-      if (*i != *(userString.begin() + distance(prompt.begin() , i))){ // if the current char (i) is not equal to the userString at i (beginning of userString (0) + distance of i)
-        ++errors;
-      } 
-    }
-
-    duration<double> timeInterval = stop - start;
-    duration<double> secondsInMinute = duration<double>(60.0);
-    duration<double> numberOfWords = duration<double>(50.0);
-    duration<double> WPM = duration<double>(numberOfWords / (timeInterval / secondsInMinute));
-
-    cout << "Time taken: " << timeInterval.count() << endl;
-    cout << "WPM: " << WPM.count() << endl;
-    cout << "Accuracy: " << static_cast<double>((prompt.size() - errors)) / prompt.size()  * 100 << " %" << endl;
-    cout << "Errors: " << errors << endl;
-      
-  }
-
-  return 0;
+    return 0;
 }
-
-
 
 

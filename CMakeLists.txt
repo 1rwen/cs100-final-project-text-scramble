@@ -1,12 +1,15 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.0)
 
 ADD_SUBDIRECTORY(googletest)
-project(BenchmarkTest)
+project(BenchmarkTests)
 
-ADD_EXECUTABLE(BenchmarkTest
-    maintest.cpp
+ADD_EXECUTABLE(BenchmarkTests
+    BenchmarkTest.cpp
+    Benchmark.cpp
+
+
 )
 
 
-TARGET_LINK_LIBRARIES(BenchmarkTest gtest)
-TARGET_COMPILE_DEFINITIONS(BenchmarkTest PRIVATE gtest_disable_pthreads=ON)
+TARGET_LINK_LIBRARIES(BenchmarkTests gtest)
+TARGET_COMPILE_DEFINITIONS(BenchmarkTests PRIVATE gtest_disable_pthreads=ON)
