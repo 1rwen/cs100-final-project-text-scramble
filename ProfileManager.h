@@ -6,18 +6,17 @@
 
 using namespace std;
 
-class Profile {
+class ProfileManager {
 
     private:
 
         //this username clarifies what we'll be reading and writing to.
         string username;
-        //vector<string> usernameList;
         void createUsernamesFile();
-        bool search(string&);
+        bool search(const string&);
         void printNames();
 
-        void createUserProfile(string&);
+        void createUserProfile(const string&);
     
     public:
 
@@ -25,10 +24,10 @@ class Profile {
 
         void chooseProfile();
         void createProfile();
-        void deleteProfile(string&);
+        void deleteProfile(const string&);
 
-        void setUsername(string& newUsername) {username = newUsername;}
+        void setUsername(const string& newUsername) {username = newUsername;}
         string getUsername() {return username;}
-        string getUserFileName() {return username += ".data";}
+        string getUserFileName() {return username += ".txt";}
 
 };

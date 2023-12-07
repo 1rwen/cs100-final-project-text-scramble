@@ -1,11 +1,11 @@
-#include "profile.h"
+#include "ProfileManager.h"
 #include <iostream>
 #include <fstream>
 #include <cstdio>
 
 using namespace std;
 
-void Profile::chooseProfile() {
+void ProfileManager::chooseProfile() {
 
     ifstream readUserFile;
     string readName;
@@ -38,7 +38,7 @@ void Profile::chooseProfile() {
 
     }
 
-    setUsername(userSelectInput);
+    username = userSelectInput;
 
     //opens the usernames file if one exists, creates one if otherwise.  
     //if (!userFile) {createUsernamesFile();}
@@ -55,7 +55,7 @@ void Profile::chooseProfile() {
 //FOR THE HELPER FUNCTIONS!!! pass in an fstream parameter so that we don't have to keep remaking them
 
 
-bool Profile::search(string& userSelectInput) {
+bool ProfileManager::search(const string& userSelectInput) {
 
     ifstream compareUserFile("usernamesFile.txt");
 
@@ -84,7 +84,7 @@ bool Profile::search(string& userSelectInput) {
 
 }
 
-void Profile::createProfile() {
+void ProfileManager::createProfile() {
 
     //adds new username to the username vector
     string newName;
@@ -109,9 +109,9 @@ void Profile::createProfile() {
 
 }
 
-void Profile::createUserProfile(string& newFileName) {
+void ProfileManager::createUserProfile(const string& newFileName) {
 
-    string newUserFileName = newFileName + ".data";
+    string newUserFileName = newFileName + ".txt";
 
     ofstream newFile(newUserFileName);
 
@@ -125,7 +125,7 @@ void Profile::createUserProfile(string& newFileName) {
 
 }
 
-void Profile::printNames() {
+void ProfileManager::printNames() {
 
     ifstream printUsernames("usernamesFile.txt");
 
@@ -146,7 +146,7 @@ void Profile::printNames() {
 
 }
 
-void Profile::createUsernamesFile () {
+void ProfileManager::createUsernamesFile () {
 
     string newUser;
 
@@ -163,7 +163,7 @@ void Profile::createUsernamesFile () {
 
 }
 
-void Profile::deleteProfile(string& userToDelete) {
+void ProfileManager::deleteProfile(const string& userToDelete) {
 
     username = userToDelete;
     string toDeleteString = getUserFileName();
