@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 
-void FileManager::readProfile() {
+void ProfileUpdater::readProfile() {
 
     ifstream profileData(fileToOpen.c_str());
 
@@ -17,7 +17,7 @@ void FileManager::readProfile() {
 
 }
 
-void FileManager::writeTotals() {
+void ProfileUpdater::writeTotals() {
 
     ofstream writeNewTotals(fileToOpen.c_str());
 
@@ -33,7 +33,7 @@ void FileManager::writeTotals() {
 
 //use "filename.c_str()" to open files 
 
-void FileManager::setTotals(double newWPM, double newAccuracy, double newTime, int newErrors, int newTestCount) {
+void ProfileUpdater::setTotals(double newWPM, double newAccuracy, double newTime, int newErrors, int newTestCount) {
 
     readProfile();
 
