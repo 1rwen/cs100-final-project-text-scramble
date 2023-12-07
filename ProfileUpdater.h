@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class FileManager {
+class ProfileUpdater {
 
     private :
 
@@ -24,7 +24,7 @@ class FileManager {
 
     public :
 
-        FileManager(string profileName) : selectedProfile(profileName), fileToOpen(profileName + ".txt") {}
+        ProfileUpdater(string profileName) : selectedProfile(profileName), fileToOpen(profileName + ".txt") {}
 
         void setTotals(double, double, double, int, int);
         void computeAverages();
