@@ -25,9 +25,7 @@ void Benchmark::BenchmarkStart(ProfileManager user) {
         auto start = high_resolution_clock::now();
 
         string prompt;
-        string userStringTemp;
-        string userStringFinal;
-        char firstchar = '`';
+        string userString;
         ifstream inFS("10-words-prompt.txt"); // might require a file for each prompt (10 , 25, 50)
 
         if (!inFS.is_open()) {
@@ -42,11 +40,7 @@ void Benchmark::BenchmarkStart(ProfileManager user) {
             getline (inFS,prompt);
             cout << prompt << endl; // the prompt that the system gives
             cout << endl; 
-            if (firstchar == '`') {
-                cin >> firstchar;
-                start = high_resolution_clock::now();            
-            }
-            getline(cin, userStringTemp); // the prompt that user gives
+            getline(cin, userString); // the prompt that user gives
             }
         inFS.close();
         }
@@ -54,9 +48,7 @@ void Benchmark::BenchmarkStart(ProfileManager user) {
 
         auto stop = high_resolution_clock::now();
 
-        userStringFinal = firstchar + userStringTemp;
-
-        this->accuracy = calcAccuracy(prompt, userStringFinal);
+        this->accuracy = calcAccuracy(prompt, userString);
         // int errors = 0;
 
         
@@ -111,7 +103,6 @@ void Benchmark::BenchmarkStart(ProfileManager user) {
             {
             getline (inFS,prompt);
             cout << prompt << endl; // the prompt that the system gives
-
             cout << endl;
             getline(cin, userString); // the prompt that user gives
 
