@@ -2,6 +2,8 @@
 #define BENCHMARK_H
 
 #include "Mode.h"
+#include "ProfileManager.h"
+#include "ProfileUpdater.h"
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
@@ -32,7 +34,7 @@ class Benchmark : Mode {
         errors = 0;
         time = duration<double>(0.0);
     }
-    void BenchmarkStart();
+    void BenchmarkStart(ProfileManager user);
     duration<double> calcWPM(std::chrono::time_point<std::chrono::high_resolution_clock> start, std::chrono::time_point<std::chrono::high_resolution_clock> stop);
     double calcAccuracy(string prompt, string userString);
     void addErrors(string prompt, string userString);

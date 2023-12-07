@@ -1,9 +1,10 @@
 #include "Benchmark.h"
 
+
 using namespace std;
 using namespace std::chrono;
 
-void Benchmark::BenchmarkStart() {
+void Benchmark::BenchmarkStart(ProfileManager user) {
     cout << "Starting Benchmark Test..." << endl << endl;
     cout << "Select # of Words..." << endl;
     cout << "1. 10 Words" << endl;
@@ -24,12 +25,14 @@ void Benchmark::BenchmarkStart() {
         auto start = high_resolution_clock::now();
 
         string prompt;
-        string userString;
+        string userStringTemp;
+        string userStringFinal;
+        char firstchar = '`';
         ifstream inFS("10-words-prompt.txt"); // might require a file for each prompt (10 , 25, 50)
 
         if (!inFS.is_open()) {
         cout << "Error opening file" << endl;
-        return ;
+        return;
         }
 
         else
@@ -38,8 +41,12 @@ void Benchmark::BenchmarkStart() {
             {
             getline (inFS,prompt);
             cout << prompt << endl; // the prompt that the system gives
-            cout << endl;
-            getline(cin, userString); // the prompt that user gives
+            cout << endl; 
+            if (firstchar == '`') {
+                cin >> firstchar;
+                start = high_resolution_clock::now();            
+            }
+            getline(cin, userStringTemp); // the prompt that user gives
             }
         inFS.close();
         }
@@ -47,7 +54,9 @@ void Benchmark::BenchmarkStart() {
 
         auto stop = high_resolution_clock::now();
 
-        this->accuracy = calcAccuracy(prompt, userString);
+        userStringFinal = firstchar + userStringTemp;
+
+        this->accuracy = calcAccuracy(prompt, userStringFinal);
         // int errors = 0;
 
         
@@ -74,6 +83,9 @@ void Benchmark::BenchmarkStart() {
         cout << "WPM: " << wpm.count() << endl;
         cout << "Accuracy: " << this->accuracy << " %" << endl;
         cout << "Errors: " << this->errors << endl;
+
+        ProfileUpdater p(user.getUsername());
+        p.setTotals(this->wpm, this->accuracy, this->time, this->errors);
         
     }
 
@@ -137,6 +149,10 @@ void Benchmark::BenchmarkStart() {
         cout << "WPM: " << wpm.count() << endl;
         cout << "Accuracy: " << this->accuracy << " %" << endl;
         cout << "Errors: " << this->errors << endl;
+
+        ProfileUpdater p(user.getUsername());
+        p.setTotals(this->wpm, this->accuracy, this->time, this->errors);
+
     }
 
     
@@ -202,6 +218,9 @@ void Benchmark::BenchmarkStart() {
         cout << "Accuracy: " << this->accuracy << " %" << endl;
         cout << "Errors: " << this->errors << endl;
         
+        ProfileUpdater p(user.getUsername());
+        p.setTotals(this->wpm, this->accuracy, this->time, this->errors);
+
     }
 
     

@@ -2,6 +2,8 @@
 #include "Benchmark.h"
 #include "BotRace.h"
 #include "Attrition.h"
+#include "ProfileManager.h"
+#include "ProfileUpdater.h"
 // #include "stats.h"
 
 using namespace std;
@@ -14,17 +16,27 @@ int main () {
     char input;
     //Profile UserA;
     Benchmark userA;
+    ProfileManager user;
     // Attrition userB;
     // BotRace userC;
     do {
         cout << endl;
         if (input == 'a') {
-            cout << "Entering Profile Editor..." << endl;
-            //createProfile();
+            char profileInput;
+            cout << "Entering Profile Editor..." << endl << endl;
+            cout << "1. Choose Existing Profile" << endl;
+            cout << "2. Create Profile" << endl;
+            if (profileInput == '1') {
+                user.chooseProfile();
+            }
+            if(profileInput == '2') {
+                user.createProfile();
+            }
+
         }
         if (input == 'b') {
             cout << "Entering Benchmark..." << endl;
-            userA.BenchmarkStart();
+            userA.BenchmarkStart(user);
         }
         if (input == 'c') {
             cout << "Entering Attrition..." << endl;
