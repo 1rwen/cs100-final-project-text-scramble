@@ -9,12 +9,13 @@ void Benchmark::BenchmarkStart() {
     cout << "1. 10 Words" << endl;
     cout << "2. 25 Words" << endl;
     cout << "3. 50 Words" << endl;
+    cout << "(Press enter after completing passage)" << endl;
 
-    int userInput;
+    char userInput;
 
     cin >> userInput;  
 
-    if (userInput == 1) {
+    if (userInput == '1') {
 
         this->wordCount = duration<double>(10.0);
         cin.clear();
@@ -61,6 +62,12 @@ void Benchmark::BenchmarkStart() {
         // duration<double> numberOfWords = duration<double>(10.0);
         // duration<double> WPM = duration<double>(numberOfWords / (timeInterval / secondsInMinute));
         
+        if (accuracy <= 49.0) {
+            this->wpm = duration<double>(0.0);
+            cout << "INVALID TEST. MUST BE AT LEAST 50% ACCURATE." << endl << endl;
+            return;
+        }
+
         this->wpm = calcWPM(start, stop);
 
         cout << "Time taken: " << time.count() << endl;
@@ -70,7 +77,7 @@ void Benchmark::BenchmarkStart() {
         
     }
 
-    else if (userInput == 2) {
+    else if (userInput == '2') {
         this->wordCount = duration<double>(25.0);
         cin.clear();
         cin.ignore();
@@ -118,6 +125,12 @@ void Benchmark::BenchmarkStart() {
         // duration<double> numberOfWords = duration<double>(10.0);
         // duration<double> WPM = duration<double>(numberOfWords / (timeInterval / secondsInMinute));
         
+        if (accuracy <= 49.0) {
+            this->wpm = duration<double>(0.0);
+            cout << "INVALID TEST. MUST BE AT LEAST 50% ACCURATE." << endl << endl;
+            return;
+        }
+
         this->wpm = calcWPM(start, stop);
 
         cout << "Time taken: " << time.count() << endl;
@@ -128,7 +141,7 @@ void Benchmark::BenchmarkStart() {
 
     
 
-    else if (userInput == 3) {
+    else if (userInput == '3') {
         this->wordCount = duration<double>(50.0);
         cin.clear();
         cin.ignore();
@@ -176,6 +189,12 @@ void Benchmark::BenchmarkStart() {
         // duration<double> numberOfWords = duration<double>(10.0);
         // duration<double> WPM = duration<double>(numberOfWords / (timeInterval / secondsInMinute));
         
+        if (accuracy <= 49.0) {
+            this->wpm = duration<double>(0.0);
+            cout << "INVALID TEST. MUST BE AT LEAST 50% ACCURATE." << endl << endl;
+            return;
+        }
+
         this->wpm = calcWPM(start, stop);
 
         cout << "Time taken: " << time.count() << endl;
@@ -184,6 +203,9 @@ void Benchmark::BenchmarkStart() {
         cout << "Errors: " << this->errors << endl;
         
     }
+
+    
+
     return;
 }
 
