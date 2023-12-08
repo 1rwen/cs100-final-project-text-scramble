@@ -41,7 +41,47 @@ First, we updated our mode and profile class to be more independent of each othe
  > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
  
  ## Screenshots
- > Screenshots of the input/output after running your application
+ Before any presented with any options, a user must create and/or select a profile.
+ 
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/6d89e163-94f6-4042-93f3-2ace7cd70f7b)
+
+ The user is then presented with a main menu that allows them to take tests, view stats, or manage their profile(s).
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/167ecbcd-de27-474a-95c3-eb99961ec441)
+
+ Upon entering the profile editor:
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/7b381999-fd92-4f04-ae3e-56f8ca997da4)
+
+ The user may select a different profile,
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/d8ab3bcc-7605-4869-9c78-01f9be7c8e83)
+
+ change their current username,
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/67feea47-cc32-4ceb-a384-8df41c3bdc4d)
+
+ create a new profile,
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/d8d7a005-03a1-4a4f-8113-6fb6cc2a723e)
+
+ delete a profile (and if the profile to delete is currently selected, select a different one),
+ 
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/04a692f8-4f69-48b2-aef6-9c4ff673ef39)
+
+ see a list of all profiles,
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/f7bf3d97-8cff-47cf-910f-9ebfac523b6a)
+
+ write their current stats (of their choice) to a file,
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/162545f8-32c0-4d9f-a480-199ae559a19f)
+
+ or display the stats they stored.
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/cae1cd48-c30a-4078-a366-dd38e355df46)
+
+
  ## Installation/Usage
  > Instructions on installing and running your application
  ## Testing
