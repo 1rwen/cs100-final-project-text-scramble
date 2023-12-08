@@ -43,7 +43,7 @@ endif ()
 set(SOURCE_FILES src/Attrition.cpp src/Benchmark.cpp src/ModeSelect.cpp src/ProfileManager.cpp src/ProfileUpdater.cpp src/stats.cpp src/TextDisplay.cpp src/words.cpp)
 add_executable(typityTypeType src/main.cpp ${SOURCE_FILES})
 
-set(TEST_FILES test/test.cpp)
+set(TEST_FILES test/wordsTest.cpp test/statsTest.cpp test/textDisplayTest.cpp test/profileUpdaterTest.cpp test/attritionTest.cpp test/benchmarkTest.cpp test/profileManagerTest.cpp)
 add_executable(test ${TEST_FILES} ${SOURCE_FILES})
 
 target_link_libraries(test gtest gtest_main)

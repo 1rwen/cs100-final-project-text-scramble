@@ -38,11 +38,11 @@ void ModeSelect::computeAvg(Stats &curr, Stats& result) {
 void ModeSelect::compareStats(Stats &curr, Stats& best) {
   if (curr.accuracy > best.accuracy)
   {
-    best.accuracy = curr.accuracy;
+    best.setAccuracy(curr.accuracy);
   }
   if ((curr.numErrors < best.numErrors) && (curr.numErrors != 0))
   {
-    best.numErrors = curr.numErrors;
+    best.setNumErrors(curr.numErrors);
   }
   if (curr.WPM > best.WPM)
   {
@@ -50,11 +50,11 @@ void ModeSelect::compareStats(Stats &curr, Stats& best) {
   }
   if ((curr.timeTaken < best.timeTaken) && (curr.timeTaken != 0.0))
   {
-    best.timeTaken = curr.timeTaken;
+    best.setTimeTaken(curr.timeTaken);
   }
   if (curr.attritionScore > best.attritionScore)
   {
-    best.attritionScore = curr.attritionScore;
+    best.setAttritionScore(curr.attritionScore);
   }
 }
 
@@ -131,6 +131,11 @@ void ModeSelect::ProfileEditor() {
         cin.ignore();
         getline(cin, deleteUser);
         currProfile->deleteProfile(deleteUser);
+        ifstream checkEmpty("../data/usernamesFile.txt");
+        if (checkEmpty.peek() == ifstream::traits_type::eof()) {   
+            cin.ignore(); 
+            currProfile->createProfile();
+        }
         if (deleteUser == currProfile->getUsername())
         {
           cout << "Press enter to confirm!" << endl;
@@ -222,11 +227,11 @@ void ModeSelect::AttritionMode() {
     runCount++;
     currMode.AttritionStart();
 
-    currentStats.timeTaken = currMode.getTime();
-    currentStats.attritionScore = currMode.getScore();
-    currentStats.WPM = currMode.calcWPM();
-    currentStats.accuracy = currMode.calcAccuracy();
-    currentStats.numErrors = currMode.calcErrors();
+    currentStats.setTimeTaken(currMode.getTime());
+    currentStats.setAttritionScore(currMode.getScore());
+    currentStats.setWPM(currMode.calcWPM());
+    currentStats.setAccuracy(currMode.calcAccuracy());
+    currentStats.setNumErrors(currMode.calcErrors());
 
     if (runCount == 1) {
       bestStats = currentStats;
@@ -278,11 +283,11 @@ void ModeSelect::BenchmarkMode() {
     runCount++;
     currMode.BenchmarkStart();
 
-    currentStats.timeTaken = currMode.getTime();
-    currentStats.attritionScore = 0;
-    currentStats.WPM = currMode.calcWPM();
-    currentStats.accuracy = currMode.calcAccuracy();
-    currentStats.numErrors = currMode.getErrors();
+    currentStats.setTimeTaken(currMode.getTime());
+    currentStats.setAttritionScore(0);
+    currentStats.setWPM(currMode.calcWPM());
+    currentStats.setAccuracy(currMode.calcAccuracy());
+    currentStats.setNumErrors(currMode.getErrors());
 
     if (runCount == 1) {
       bestStats = currentStats;
@@ -373,5 +378,15 @@ void ModeSelect::displayStats() {
 
 void ModeSelect::Quit() {
     cout << "\x1b[H\x1b[2J";
-    cout << "Thanks for playing!" << endl;
+    cout << "\x1b[31mTh\x1b[33manks \x1b[32mfor \x1b[34mplay\x1b[35ming\x1b[37m\x1b[3m " << currProfile->getUsername() << "!" << endl;
+    cout << "\x1b[23m";
+    cout << "In this session, you completed " << runCount << " tests." << endl << endl;
+    cout << "\x1b[36m";
+    cout << "Your best stats were: " << endl;
+    cout << bestStats;
+    cout << "\x1b[35m";
+    cout << "Your average stats were: " << endl;
+    cout << avgStats;
+    cout << "\x1b[31mCo\x1b[33mme \x1b[32mback \x1b[34many\x1b[35mtime \x1b[37m:)" << endl;
+    
 }
