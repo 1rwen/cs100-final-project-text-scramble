@@ -21,8 +21,6 @@ void ProfileManager::chooseProfile() {
     if (readUserFile.fail()) {
 
         createUsernamesFile();
-        return;
-
     }
 
     cout << "Select a username from the following list: " << endl;
@@ -30,8 +28,6 @@ void ProfileManager::chooseProfile() {
 
     string userSelectInput;
 
-    cin.clear();
-    cin.ignore();
     getline(cin, userSelectInput);
 
     bool userFound = search(userSelectInput);
@@ -40,8 +36,6 @@ void ProfileManager::chooseProfile() {
 
         cout << "That profile does not exist, please try again." << endl;
 
-        cin.clear();
-        cin.ignore();
         getline(cin, userSelectInput);
 
         userFound = search(userSelectInput);
@@ -84,8 +78,6 @@ void ProfileManager::createProfile() {
     string newName;
     cout << "Please enter your new username: " << endl;
     
-    cin.clear();
-    cin.ignore();
     getline(cin, newName);
 
     ofstream inUsernamesFile("../data/usernamesFile.txt", fstream::app);
