@@ -3,6 +3,8 @@
 #include <fstream>
 #include <cstdio>
 #include <stdexcept>
+#include <vector>
+#include <iterator>
 
 using namespace std;
 
@@ -54,7 +56,7 @@ bool ProfileManager::search(const string& userSelectInput) {
 
     if (compareUserFile.fail()) {
 
-        std::runtime_error("There was an error reading the file.");
+        throw std::runtime_error("There was an error reading the file.");
 
     }
 
@@ -62,12 +64,7 @@ bool ProfileManager::search(const string& userSelectInput) {
 
     while (compareUserFile >> readName) {
 
-        if (userSelectInput == readName) {
-        
-            setUsername(readName);
-            return true;
-
-        }
+        if (userSelectInput == readName) {return true;}
 
     }
     
@@ -92,7 +89,7 @@ void ProfileManager::createProfile() {
 
     if (inUsernamesFile.fail()) {
 
-        std::runtime_error("There was an error reading the file.");
+        throw std::runtime_error("There was an error reading the file.");
 
     }
 
@@ -123,7 +120,7 @@ void ProfileManager::printNames() {
 
     if (printUsernames.fail()) {
 
-        std::runtime_error("There was an error reading the file.");
+        throw std::runtime_error("There was an error reading the file.");
 
     }
 
@@ -147,7 +144,7 @@ void ProfileManager::createUsernamesFile () {
 
     if (usernamesOut.fail()) {
 
-        std::runtime_error("There was an error reading the file.");
+        throw std::runtime_error("There was an error reading the file.");
 
     }
 
@@ -159,11 +156,79 @@ void ProfileManager::createUsernamesFile () {
 
 }
 
-void ProfileManager::deleteProfile(const string& userToDelete) {
+string ProfileManager::deleteProfile() {
 
-    username = userToDelete;
-    string toDeleteString = getUserFileName();
+    string userToDelete;
+
+    cout << "Please enter the name of the profile you'd like to delete: " << endl;
+
+    cin.clear();
+    cin.ignore();
+    getline(cin, userToDelete);
+
+    bool userFound = search(userToDelete);
+
+    while (!userFound) {
+
+        cout << "That profile does not exist, please try again." << endl;
+        
+        cin.clear();
+        cin.ignore();
+        getline(cin, userToDelete);
+
+        userFound = search(userToDelete);
+
+    }
+
+    while (username == userToDelete) {
+
+        cout << "The profile you are trying to delete is currently the selected profile." << endl;
+        cout << "Please pick another profile to switch to while we delete this one." << endl;
+
+        chooseProfile();
+
+    }
+
+    vector<string> tempUsernameVector; 
+
+    ifstream readUsernameFile("usernamesFile.txt");
+
+    if (readUsernameFile.fail()) {
+
+        throw std::runtime_error("There was an error reading the file.");
+
+    }
+
+    string readToVector;
+
+    while (readUsernameFile >> readToVector) {
+
+        if (readToVector != userToDelete) {
+
+            tempUsernameVector.push_back(readToVector);
+
+        }
+
+    }
+
+    readUsernameFile.close();
+
+    ofstream rewriteUsernameFile("usernamesFile.txt");
+
+    vector<string>::iterator i;
+
+    for (i = tempUsernameVector.begin(); i != tempUsernameVector.end(); ++i) {
+
+        rewriteUsernameFile << *i << endl;
+
+    }
+
+    rewriteUsernameFile.close();
+
+    string toDeleteString = userToDelete + ".txt";
 
     remove(toDeleteString.c_str());
+
+    return userToDelete;
 
 }

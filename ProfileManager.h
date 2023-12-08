@@ -24,7 +24,7 @@ class ProfileManager {
 
         void chooseProfile();
         void createProfile();
-        void deleteProfile(const string&);
+        string deleteProfile();
 
         void setUsername(const string& newUsername) {username = newUsername;}
         string getUsername() {return username;}
