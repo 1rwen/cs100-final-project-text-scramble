@@ -128,7 +128,7 @@ First, we updated our mode and profile class to be more independent of each othe
 
 
  ## Installation/Usage
-- git clone https://www.chegg.com/homework-help/questions-and-answers/red-ball-mass-210-g-constant-force-pushes-red-ball-horizontally-launches-speed-20-m-s-forc-q86684535
+- git clone (https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001.git)
 - afterwards, the user should then change directory by "cd src"
 - to execute "g++ -pthread main.cpp ModeSelect.cpp Attrition.cpp Benchmark.cpp ProfileUpdater.cpp ProfileManager.cpp TextDisplay.cpp words.cpp stats.cpp -o typingTest"
  ## Testing
