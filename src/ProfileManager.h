@@ -17,14 +17,13 @@ class ProfileManager {
         string username;
         void createUsernamesFile();
         bool search(const string&);
-        void printNames();
 
         void createUserProfile(const string&);
         void replace_first(string& s, string& toReplace, string& replaceWith);
     
     public:
 
-        Profile(ProfileUpdater& update) : username(""){ fileHold = &update; }
+        ProfileManager(ProfileUpdater& update) : username(""){ fileHold = &update; }
 
         string getUsername() {return username;}
         string getUserFileName(string uName) {return "../data/" + uName + ".txt";}

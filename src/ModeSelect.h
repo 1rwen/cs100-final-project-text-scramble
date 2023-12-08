@@ -5,7 +5,7 @@
 #include "words.h"
 #include "Attrition.h"
 #include "Benchmark.h"
-#include "profile.h"
+#include "ProfileManager.h"
 #include "ProfileUpdater.h"
 #include "stats.h"
 
@@ -19,11 +19,11 @@ class ModeSelect {
     Stats bestStats;
     Stats avgStats;
     int runCount;
-    Profile* currProfile;
+    ProfileManager* currProfile;
     void computeAvg(Stats &curr, Stats& result);
     void compareStats(Stats &curr, Stats& best);
   public:
-    ModeSelect(Profile& current) { 
+    ModeSelect(ProfileManager& current) { 
       runCount = 0;
       currProfile = &current; 
     }
