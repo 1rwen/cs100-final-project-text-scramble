@@ -125,7 +125,9 @@ First, we updated our mode and profile class to be more independent of each othe
 
  ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/97ef178a-2ff9-48e7-98f9-7ae117a63146)
 
+Here's the clean valgrind :D
 
+![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/7633b918-9815-4c0c-8f1b-9121abf822dc)
 
  ## Installation/Usage
 - git clone (https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001.git)
