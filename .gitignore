@@ -1,0 +1,12 @@
+.vscode/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+bin/
+cmake_install.cmake
+data/killa.txt
+data/usernamesFile.txt
+googletest-build/
+googletest-download/
+googletest-src/
+lib/
