@@ -21,7 +21,7 @@ features
 
 ### Screen Layouts
 ![IMG_0589](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/117537259/ef10f96e-58d4-4cd3-ab16-0d5ec42ad2e0)
-![IMG_0590](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/117537259/d3181c06-6471-4ff2-9337-b6d841f1564e)
+![IMG_0590](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/117537259/d0543e9c-594c-40c4-99c6-4bca288f2e42)
 The screen layout for this typing program starts with a main menu that the users can choose from, (i.e. create / edit profile , benchmark gamemode , attrition and quit) which the user can navigate through the interface by using numbers located in front of the options. Users can set up profiles with having the options to create or pick an existing profile in which can be created by simply typing in a name to assign / save with the profile in which stats will be respective to its profiles, and users can switch back and forth deciding what profiles to use. Moreover, the users can have the ability to play a benchmark mode in which the user can pick a numbered words prompt (i.e. 10, 25, 50 words). Afterwards, after finishing the prompt the users will be presented with statistics such as Duration, WPM, Accuracy, and # of Errors of the user's current test. ==Furthermore, afterwards once the user finishes a particular option will then be presented back to the main menu where they will be given the same main menu as it was initially starting the tests.
 
 ## Class Diagram
