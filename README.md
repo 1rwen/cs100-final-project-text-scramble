@@ -20,10 +20,9 @@ features
 ![navigation diagram](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/blob/bb4ab4319fce4d7f2b4634e841d7ce294341fc95/Typing%20Project%20User%20Interface%20Specification%20(2).png)
 
 ### Screen Layouts
-![IMG_0581](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/117537259/5597d20c-4809-49e6-adfe-8eac9e41eb0a)
-![screen diagram](screenlayout1.jpg)
-![screen diagram](screenlayout2.jpg)
-The screen layout for this typing program starts with a main menu that the users can choose from, (i.e. create / edit profile , benchmark gamemode , attrition and quit) which the user can navigate through the interface by using numbers located in front of the options. Users can set up profiles with having the options to create or pick an existing profile in which can be created by simply typing in a name to assign / save with the profile in which stats will be respective to its profiles, and users can switch back and forth deciding what profiles to use. Moreover, the users can have the ability to play a benchmark mode in which the user can pick a numbered words prompt (i.e. 10, 25, 50 words). Afterwards, after finishing the prompt the users will be presented with statistics such as Duration, WPM, Accuracy, and # of Errors of the user's current test. ==Furthermore, afterwards once the user finishes a particular option will then be presented back to the main menu where they will be given the same main menu as it was initially starting the tests.
+![IMG_0589](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/117537259/ef10f96e-58d4-4cd3-ab16-0d5ec42ad2e0)
+![IMG_0590](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/117537259/d0543e9c-594c-40c4-99c6-4bca288f2e42)
+The screen layout for this typing program starts with a main menu where the users has a selection to choose from (i.e., profile editor, benchmark gamemode , attrition, stats mode, and quit), which the user can navigate through the interface by using the assign character in front of the options. Users can set up profiles by having the option to create or pick an existing profile, which can be created by simply typing in a name to assign or save with the profile, whose stats will be respective to its profiles, and users can switch back and forth between deciding what profiles to use. Moreover, the users can have the ability to play a benchmark mode in which they can pick a numbered word prompt (i.e., 10, 25, or 50 words) with a selection of different variations of the number of words prompt, such as different themes / difficulty. Afterwards, after finishing the prompt, the users will be presented with statistics such as time duration, WPM, accuracy, and the number of errors in the user's current test. Furthermore, a similar layout is also applied to attrition mode, where the user is given a number of lives in which words will pop up on the screen, and the user has to keep going until eventually they get a number of words incorrect, at which point the program will end giving the user's statistics (i.e. duration, wpm, accuracy, attrition score); like in benchmark mode, the user has a selection of different variations of prompts (i.e. difficulty, themes) that the user can choose from. The last main menu option is the stats history, where the user has the opportunity to look at their most recent run, overall average stats, or best run, showcasing in each selection the respective stats. Furthermore, once the user finishes a particular option, they will be presented back to the main menu, where they will be given the same main menu as when they were initially starting the tests, in which the user can decide to quit or play another gamemode.
 
 ## Class Diagram
 ![uml diagram](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/79384814/71a7bc84-38ce-4152-8d0c-ecf3c9a334b4)
@@ -42,7 +41,47 @@ First, we updated our mode and profile class to be more independent of each othe
  > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
  
  ## Screenshots
- > Screenshots of the input/output after running your application
+ Before any presented with any options, a user must create and/or select a profile.
+ 
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/6d89e163-94f6-4042-93f3-2ace7cd70f7b)
+
+ The user is then presented with a main menu that allows them to take tests, view stats, or manage their profile(s).
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/167ecbcd-de27-474a-95c3-eb99961ec441)
+
+ Upon entering the profile editor:
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/7b381999-fd92-4f04-ae3e-56f8ca997da4)
+
+ The user may select a different profile,
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/d8ab3bcc-7605-4869-9c78-01f9be7c8e83)
+
+ change their current username,
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/67feea47-cc32-4ceb-a384-8df41c3bdc4d)
+
+ create a new profile,
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/d8d7a005-03a1-4a4f-8113-6fb6cc2a723e)
+
+ delete a profile (and if the profile to delete is currently selected, select a different one),
+ 
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/04a692f8-4f69-48b2-aef6-9c4ff673ef39)
+
+ see a list of all profiles,
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/f7bf3d97-8cff-47cf-910f-9ebfac523b6a)
+
+ write their current stats (of their choice) to a file,
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/162545f8-32c0-4d9f-a480-199ae559a19f)
+
+ or display the stats they stored.
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/cae1cd48-c30a-4078-a366-dd38e355df46)
+
+
  ## Installation/Usage
  > Instructions on installing and running your application
  ## Testing
