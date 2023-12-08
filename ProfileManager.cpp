@@ -5,15 +5,17 @@
 #include <stdexcept>
 #include <vector>
 #include <iterator>
+#include <chrono>
 
 using namespace std;
+using namespace std::chrono;
 
 void ProfileManager::chooseProfile() {
 
     ifstream readUserFile;
     string readName;
 
-    readUserFile.open("usernamesFile.txt");
+    readUserFile.open("../data/usernamesFile.txt");
 
     if (readUserFile.fail()) {
 
@@ -37,7 +39,8 @@ void ProfileManager::chooseProfile() {
 
         cout << "That profile does not exist, please try again." << endl;
 
-        string userSelectInput;
+        cin.clear();
+        cin.ignore();
         getline(cin, userSelectInput);
 
         userFound = search(userSelectInput);
@@ -45,6 +48,7 @@ void ProfileManager::chooseProfile() {
     }
 
     username = userSelectInput;
+    fileHold->switchProfile(username);
 
     readUserFile.close();
     
@@ -52,7 +56,7 @@ void ProfileManager::chooseProfile() {
 
 bool ProfileManager::search(const string& userSelectInput) {
 
-    ifstream compareUserFile("usernamesFile.txt");
+    ifstream compareUserFile("../data/usernamesFile.txt");
 
     if (compareUserFile.fail()) {
 
@@ -62,7 +66,7 @@ bool ProfileManager::search(const string& userSelectInput) {
 
     string readName;
 
-    while (compareUserFile >> readName) {
+    while (getline(compareUserFile, readName)) {
 
         if (userSelectInput == readName) {return true;}
 
@@ -83,9 +87,7 @@ void ProfileManager::createProfile() {
     cin.ignore();
     getline(cin, newName);
 
-    username = newName;
-
-    ofstream inUsernamesFile("usernamesFile.txt", fstream::app);
+    ofstream inUsernamesFile("../data/usernamesFile.txt", fstream::app);
 
     if (inUsernamesFile.fail()) {
 
@@ -100,11 +102,13 @@ void ProfileManager::createProfile() {
 
 }
 
-void ProfileManager::createUserProfile(const string& newFileName) {
+void ProfileManager::createUserProfile(const string& newName) {
 
-    ofstream newFile(newFileName + ".txt");
+    string newUserFileName = getUserFileName(newName);
 
-    for (unsigned i = 0; i < 5; ++i) {
+    ofstream newFile(newUserFileName);
+
+    for(unsigned i = 0; i < 6; ++i) {
 
         newFile << 0 << endl;
 
@@ -116,7 +120,7 @@ void ProfileManager::createUserProfile(const string& newFileName) {
 
 void ProfileManager::printNames() {
 
-    ifstream printUsernames("usernamesFile.txt");
+    ifstream printUsernames("../data/usernamesFile.txt");
 
     if (printUsernames.fail()) {
 
@@ -125,9 +129,10 @@ void ProfileManager::printNames() {
     }
 
     string nameToPrint;
-    while (printUsernames >> nameToPrint) {
+    cout << "Profiles:";
+    while (getline(printUsernames, nameToPrint)) {
 
-        cout << nameToPrint << endl;
+        cout <<  nameToPrint << endl;
 
     }
 
@@ -140,95 +145,75 @@ void ProfileManager::createUsernamesFile () {
     string newUser;
 
     //file that holds usernames is created, 
-    ofstream usernamesOut("usernamesFile.txt");
+    ofstream usernamesOut("../data/usernamesFile.txt");
 
-    if (usernamesOut.fail()) {
+    cout << "Enter your new Username: " << endl;
+    getline(cin, newUser);
+    //cin.ignore();
 
-        throw std::runtime_error("There was an error reading the file.");
+    usernamesOut << newUser << endl;
 
-    }
-
-    createProfile();
-
-    usernamesOut << username << endl;
+    createUserProfile(newUser);
 
     usernamesOut.close();
 
 }
 
-string ProfileManager::deleteProfile() {
+void ProfileManager::deleteProfile(string& userToDelete) {
 
-    string userToDelete;
+    if (search(userToDelete)) {
+    ifstream getUsernames("../data/usernamesFile.txt");
+    string usernameList = "";
+    string tempStore = "";
 
-    cout << "Please enter the name of the profile you'd like to delete: " << endl;
-
-    cin.clear();
-    cin.ignore();
-    getline(cin, userToDelete);
-
-    bool userFound = search(userToDelete);
-
-    while (!userFound) {
-
-        cout << "That profile does not exist, please try again." << endl;
-        
-        cin.clear();
-        cin.ignore();
-        getline(cin, userToDelete);
-
-        userFound = search(userToDelete);
-
-    }
-
-    while (username == userToDelete) {
-
-        cout << "The profile you are trying to delete is currently the selected profile." << endl;
-        cout << "Please pick another profile to switch to while we delete this one." << endl;
-
-        chooseProfile();
-
-    }
-
-    vector<string> tempUsernameVector; 
-
-    ifstream readUsernameFile("usernamesFile.txt");
-
-    if (readUsernameFile.fail()) {
-
-        throw std::runtime_error("There was an error reading the file.");
-
-    }
-
-    string readToVector;
-
-    while (readUsernameFile >> readToVector) {
-
-        if (readToVector != userToDelete) {
-
-            tempUsernameVector.push_back(readToVector);
-
+    while (getline(getUsernames, tempStore)) {
+        if (tempStore != userToDelete)
+        {
+            usernameList += tempStore;
+            usernameList += "\n";
         }
-
     }
+    
+    ofstream rewriteUsers("../data/usernamesFile.txt");
+    rewriteUsers << usernameList;
 
-    readUsernameFile.close();
-
-    ofstream rewriteUsernameFile("usernamesFile.txt");
-
-    vector<string>::iterator i;
-
-    for (i = tempUsernameVector.begin(); i != tempUsernameVector.end(); ++i) {
-
-        rewriteUsernameFile << *i << endl;
-
-    }
-
-    rewriteUsernameFile.close();
-
-    string toDeleteString = userToDelete + ".txt";
+    string toDeleteString = getUserFileName(userToDelete);
 
     remove(toDeleteString.c_str());
+    }
+    else
+    {
+        cout << "That user already doesn't exist." << endl;
+        this_thread::sleep_for(milliseconds(500));
+    }
+}
 
-    return userToDelete;
+void ProfileManager::switchUsername(string& newUsername) {
+    //need to 1) set new username, 2) edit usernames file, 3) if data file already exists, rename it
+    if (search(newUsername)) {
+        cout << "Looks like that username is already taken! :(" << endl;
+        this_thread::sleep_for(milliseconds(500));
+        return;
+    }
+    if (fileHold->fileCheck())
+    {
+        string currFileName = getUserFileName(username);
+        string newFileName = "../data/" + newUsername + ".txt";
+        rename(currFileName.c_str(), newFileName.c_str());
+    }
 
+    ifstream getUsernames("../data/usernamesFile.txt");
+    string usernameList((std::istreambuf_iterator<char>(getUsernames)), (std::istreambuf_iterator<char>()) );
+    replace_first(usernameList, this->username, newUsername);
+    ofstream rewriteUsers("../data/usernamesFile.txt");
+    rewriteUsers << usernameList;
+
+    username = newUsername;
+    fileHold->switchProfile(newUsername);
+}
+
+void ProfileManager::replace_first(string& s, string& toReplace, string& replaceWith) {
+    size_t pos = s.find(toReplace);
+    if (pos == std::string::npos) return; //not found
+    s.replace(pos, toReplace.length(), replaceWith);
 }

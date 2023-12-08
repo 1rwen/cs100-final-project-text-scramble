@@ -1,33 +1,32 @@
 #pragma once
 
 #include <string>
-#include <chrono>
+#include <sys/stat.h>
 
 using namespace std;
-using namespace std::chrono;
 
 class ProfileUpdater {
 
     private :
-
         string selectedProfile;
         string fileToOpen;
-        int totalTestCount;
+        double WPM;
+        double accuracy;
+        double time;
+        int errors;
+        int attScore;
+        int testCount;
 
-        //the new current totals that will be RETURNED and used for calculating avgs
-        double totalWPM;
-        double totalAccuracy;
-        double totalTime;
-        int totalErrors;
-
-        void writeTotals();
-        void readProfile();
+        bool readProfile();
+        void writeStats();
 
     public :
 
-        ProfileUpdater(string profileName) : selectedProfile(profileName), fileToOpen(profileName + ".txt") {}
+        ProfileUpdater() : selectedProfile(""), fileToOpen(""), 
+                        WPM(0.0), accuracy(0.0), time(0.0), errors(0), attScore(0), testCount(0) {}
 
-        void setTotals(const duration<double>&, double, const duration<double>&, int);
-        void computeAverages();
-
+        void setStats(double, double, double, int, int, int);
+        void outputProfile();
+        void switchProfile(string& newProfile);
+        bool fileCheck();
 };
