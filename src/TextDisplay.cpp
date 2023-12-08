@@ -18,8 +18,6 @@ double TextDisplay::timedDisplay(string& userInput, string& passage, int& count)
     cout << "\x1b[34m";
     cout << passage << endl << endl;
     cout << "\x1b[32m";
-
-    auto start = high_resolution_clock::now();
     userInput = "";
     string input = "";
     //int errors = 0;
@@ -27,9 +25,11 @@ double TextDisplay::timedDisplay(string& userInput, string& passage, int& count)
 
     cout << "\033[s";
     cin.ignore();
+    auto start = high_resolution_clock::now();
     while (getline(cin,input) && !input.empty()) {
         userInput += input; 
     }
+    auto end = high_resolution_clock::now();
         cout << "\033[u";
 
         for (auto i(userInput.begin() ); i != userInput.end(); ++i){ // reads and compares the system prompt vs the user string
@@ -66,8 +66,6 @@ double TextDisplay::timedDisplay(string& userInput, string& passage, int& count)
         } 
         cout << endl;
     
-
-    auto end = high_resolution_clock::now();
 
     duration<double> timeInterval = end - start;
     /* duration<double> secondsInMinute = duration<double>(60.0);
@@ -186,6 +184,14 @@ double TextDisplay::lifeDisplay(vector<string>& userInput, int& score, vector<st
         else
         {
             score++;
+        }
+
+        if (score + (3 - lives) >= 100)
+        {
+            cout << "\x1b[33m" << "Congratulations!!! You have no life but you did manage to complete 100 words..." << endl;
+            cout << "So let's celebrate that I guess. Seriously, find something better to do <3 :)" << endl;
+            this_thread::sleep_for(milliseconds(2000));
+            cout << "\x1b[37m";
         }
 
         string temp;

@@ -222,7 +222,7 @@ void ModeSelect::AttritionMode() {
     runCount++;
     currMode.AttritionStart();
 
-    currentStats.timeTaken += currMode.getTime();
+    currentStats.timeTaken = currMode.getTime();
     currentStats.attritionScore = currMode.getScore();
     currentStats.WPM = currMode.calcWPM();
     currentStats.accuracy = currMode.calcAccuracy();
@@ -278,7 +278,7 @@ void ModeSelect::BenchmarkMode() {
     runCount++;
     currMode.BenchmarkStart();
 
-    currentStats.timeTaken += currMode.getTime();
+    currentStats.timeTaken = currMode.getTime();
     currentStats.attritionScore = 0;
     currentStats.WPM = currMode.calcWPM();
     currentStats.accuracy = currMode.calcAccuracy();

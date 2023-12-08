@@ -173,6 +173,11 @@ void ProfileManager::deleteProfile(string& userToDelete) {
     string toDeleteString = getUserFileName(userToDelete);
 
     remove(toDeleteString.c_str());
+
+    ifstream checkEmpty("../data/usernamesFile.txt");
+    if (checkEmpty.tellg() == 0) {    
+        createProfile();
+    }
     }
     else
     {
