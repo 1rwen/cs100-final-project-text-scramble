@@ -45,5 +45,5 @@ void Benchmark::addErrors() {
     {
         errors += (passage.size() - (userInput.size() + newLineCounter));
     }
-}
 
+}
