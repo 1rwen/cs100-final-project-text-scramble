@@ -46,5 +46,5 @@ First, we updated our mode and profile class to be more independent of each othe
  ## Installation/Usage
  > Instructions on installing and running your application
  ## Testing
- > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
+ We used a combination of unit testing and manual behavioral testing.  Our unit tests were used to verify calculations and program flow, as well as provide a repeatable method for testing.  We also used manual behavioral testing to cover edge cases and any other cases that we might've missed in our unit tests (this was necessary due to our program's dependency on user input).  To check our data files, we just manually opened the file and kept track of any edits or deletions.  
  
