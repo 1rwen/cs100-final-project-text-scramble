@@ -20,9 +20,8 @@ features
 ![navigation diagram](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/blob/bb4ab4319fce4d7f2b4634e841d7ce294341fc95/Typing%20Project%20User%20Interface%20Specification%20(2).png)
 
 ### Screen Layouts
-![IMG_0581](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/117537259/5597d20c-4809-49e6-adfe-8eac9e41eb0a)
-![screen diagram](screenlayout1.jpg)
-![screen diagram](screenlayout2.jpg)
+![IMG_0589](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/117537259/ef10f96e-58d4-4cd3-ab16-0d5ec42ad2e0)
+![IMG_0590](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/117537259/d3181c06-6471-4ff2-9337-b6d841f1564e)
 The screen layout for this typing program starts with a main menu that the users can choose from, (i.e. create / edit profile , benchmark gamemode , attrition and quit) which the user can navigate through the interface by using numbers located in front of the options. Users can set up profiles with having the options to create or pick an existing profile in which can be created by simply typing in a name to assign / save with the profile in which stats will be respective to its profiles, and users can switch back and forth deciding what profiles to use. Moreover, the users can have the ability to play a benchmark mode in which the user can pick a numbered words prompt (i.e. 10, 25, 50 words). Afterwards, after finishing the prompt the users will be presented with statistics such as Duration, WPM, Accuracy, and # of Errors of the user's current test. ==Furthermore, afterwards once the user finishes a particular option will then be presented back to the main menu where they will be given the same main menu as it was initially starting the tests.
 
 ## Class Diagram
