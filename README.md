@@ -42,6 +42,7 @@ First, we updated our mode and profile class to be more independent of each othe
  > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
  
  ## Screenshots
+
  Before any presented with any options, a user must create and/or select a profile.
  
  ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/6d89e163-94f6-4042-93f3-2ace7cd70f7b)
@@ -56,7 +57,7 @@ First, we updated our mode and profile class to be more independent of each othe
 
  The user may select a different profile,
 
- ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/d8ab3bcc-7605-4869-9c78-01f9be7c8e83)
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/651e4648-35b6-48b2-8b48-f80d36108d08)
 
  change their current username,
 
@@ -81,6 +82,49 @@ First, we updated our mode and profile class to be more independent of each othe
  or display the stats they stored.
 
  ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/cae1cd48-c30a-4078-a366-dd38e355df46)
+
+
+ Back in the main menu, the user can select the Attrition game by pressing 'a'.
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/33be8ca2-fb17-4daf-b990-6a21201ad411)
+
+ The user can choose a difficulty,
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/6577da2c-bc3c-478f-ad81-10be11854f35)
+
+ or a theme.
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/2df48c22-a24d-4555-95bb-9bb6c3708038)
+
+ While playing the test, the user will be able to see the correctness of their input.  Errors will appear red, and if they run out of time the word will cross out and the next prompt will appear afterwards.  
+ After the user has made 3 errors, the game will end and output the user's stats for that game.
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/baa0201a-0c99-4edd-8444-f8ec31544aa7)
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/bc11a1c7-f8ad-4a4e-b7cd-9455b8840d66)
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/aec102c8-137c-40e6-808a-fa35e7e5fbd0)
+
+ The user may also press 'b' to take a benchmark test with 10, 25, or 50 words. Similar to the Attrition game mode, the user is prompted to select a difficulty, theme, or default settings.
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/a1c3450c-e219-4f80-be7d-afbb9e84d592)
+
+ After the test, errors are marked in red and the user's stats for that test are displayed below.
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/4accbc67-e4eb-4ea7-8dd8-f39be3190c96)
+
+ Lastly, the user can select to display their stats. 
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/8a24b91e-445f-4b7c-8f52-c0fb4204a658)
+
+ Alternatively, the user may view how many tests they've taken.
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/d9425477-8480-461b-996d-0959d741776d)
+
+ Once the user has done everything they want to do, they may press 'q' in the main menu to end the program :)
+
+ ![image](https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001/assets/124600164/97ef178a-2ff9-48e7-98f9-7ae117a63146)
+
 
 
  ## Installation/Usage
