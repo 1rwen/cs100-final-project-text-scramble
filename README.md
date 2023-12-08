@@ -130,7 +130,7 @@ First, we updated our mode and profile class to be more independent of each othe
  ## Installation/Usage
 - git clone (https://github.com/cs100/final-project-rnguy137-mchun082-bvo024-wrals001.git)
 - afterwards, the user should then change directory by "cd src"
-- to execute "g++ -pthread main.cpp ModeSelect.cpp Attrition.cpp Benchmark.cpp ProfileUpdater.cpp ProfileManager.cpp TextDisplay.cpp words.cpp stats.cpp -o typingTest"
+- To execute "cmake ." then "make" in main directory, cd to bin folder, then "./typityTypeType"
  ## Testing
  We used a combination of unit testing and manual behavioral testing.  Our unit tests were used to verify calculations and program flow, as well as provide a repeatable method for testing.  We also used manual behavioral testing to cover edge cases and any other cases that we might've missed in our unit tests (this was necessary due to our program's dependency on user input).  To check our data files, we just manually opened the file and kept track of any edits or deletions.  
  
