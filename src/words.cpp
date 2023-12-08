@@ -1,8 +1,8 @@
 #include "words.h"
 
-using namespace word;
+namespace word {
 
-void word::getTotalPassageNumber(int &listSize)
+void getTotalPassageNumber(int &listSize)
 {
     // possible counts: 10, 25, 50 (int)
     // possible difficulty: e, m, h, n (char)
@@ -48,79 +48,59 @@ void word::getTotalPassageNumber(int &listSize)
             {
                 difficulty = 'h';
             }
-            theme = "na";
-            temp = countPassageGroup(count, difficulty, theme);
-            listSize += temp;
-
-        }
-        for (int k = 0; k < 8; ++k) //possible themes
-        {
-            if (k == 0)
+            
+            for (int k = 0; k < 8; ++k) //possible themes
             {
-                theme = "na";
+                if (k == 0)
+                {
+                    theme = "na";
+                }
+                if (k == 1)
+                {
+                    theme = "sp";
+                }
+                if (k == 2)
+                {
+                    theme = "di";
+                }
+                if (k == 3)
+                {
+                    theme = "sh";
+                }
+                if (k == 4)
+                {
+                    theme = "fd";
+                }
+                if (k == 5)
+                {
+                    theme = "vg";
+                }
+                if (k == 6)
+                {
+                    theme = "lt";
+                }
+                if (k == 7)
+                {
+                    theme = "mu";
+                }
+                temp = countPassageGroup(count, difficulty, theme);
+                listSize += temp;
             }
-            if (k == 1)
-            {
-                theme = "sp";
-            }
-            if (k == 2)
-            {
-                theme = "di";
-            }
-            if (k == 3)
-            {
-                theme = "sh";
-            }
-            if (k == 4)
-            {
-                theme = "fd";
-            }
-            if (k == 5)
-            {
-                theme = "vg";
-            }
-            if (k == 6)
-            {
-                theme = "lt";
-            }
-            if (k == 7)
-            {
-                theme = "mu";
-            }
-            difficulty = 'n';
-            temp = countPassageGroup(count, difficulty, theme);
-            listSize += temp;
         }
     }
 }
 
-std::string word::generatePassage(int wordCount, char diff, std::string& theme)
+std::string generatePassage(int wordCount, char diff = 'n', std::string theme = "na")
 {
     int possibleMax = countPassageGroup(wordCount, diff, theme);
 
-    int pickPassage = rand() % (possibleMax + 1);
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> distMax(0,possibleMax-1);
 
-    std::string fName = "../text/words";
-    std::string extension = ".txt";
-    std::string count = std::to_string(wordCount);
-    std::string difficulty = "";
-    std::string type = "";
-    if (diff != 'n')
-    {
-        difficulty = "_";
-        difficulty += diff;
-    }
-    if (theme != "na")
-    {
-        type = "_";
-        type += theme;
-    }
+    int pickPassage = distMax(rng);
 
-    fName += count;
-    fName += difficulty;
-    fName += theme;
-    fName += '_';
-    fName += std::to_string(pickPassage);
+    std::string fName = generateFileName(wordCount, diff, theme, pickPassage);
 
     std::ifstream passage(fName);
     if (!passage.is_open()) {
@@ -138,33 +118,9 @@ std::string word::generatePassage(int wordCount, char diff, std::string& theme)
     
 } // use options to choose passage
 
-std::vector<std::string> word::generateWordList(int wordCount, char diff, std::string& theme)
+std::vector<std::string> generateWordList(char diff = 'n', std::string theme = "na")
 {
-    int possibleMax = countPassageGroup(wordCount, diff, theme);
-
-    int pickPassage = std::rand() % (possibleMax + 1);
-
-    std::string fName = "../text/words";
-    std::string extension = ".txt";
-    std::string count = std::to_string(wordCount);
-    std::string difficulty = "";
-    std::string type = "";
-    if (diff != 'n')
-    {
-        difficulty = "_";
-        difficulty += diff;
-    }
-    if (theme != "na")
-    {
-        type = "_";
-        type += theme;
-    }
-
-    fName += count;
-    fName += difficulty;
-    fName += theme;
-    fName += '_';
-    fName += std::to_string(pickPassage);
+    std::string fName = generateFileName(100, diff, theme, 0);
     std::vector<std::string> wordList;
 
     std::ifstream passage(fName);
@@ -180,54 +136,35 @@ std::vector<std::string> word::generateWordList(int wordCount, char diff, std::s
             while (store) {
                 std::string word;
                 store >> word;
+                if (word != "") {
                 wordList.push_back(word);
+                }
             }
         }
     }
 
+
+    std::shuffle(std::begin(wordList), std::end(wordList), std::random_device());
+
     return wordList;
 } // create word list for game mode
 
-bool word::fileCheck(std::string &fileName)
+bool fileCheck(std::string &fileName)
 {
     struct stat check;
     bool exist = (stat(fileName.c_str(), &check) == 0); // .c_str converts string to char array and stat will return 0 if no error occurs (i.e. file exists and can be accessed)
     return exist;
 }
 
-int word::countPassageGroup(int cnt, char diff, std::string& theme)
+int countPassageGroup(int cnt, char diff, std::string theme)
 {
-    std::string dir = "../text/";
-    std::string prefix = "words";
-    std::string extension = ".txt";
-    std::string count = std::to_string(cnt);
-    std::string difficulty = "";
-    std::string type = "";
-    if (diff != 'n')
-    {
-        difficulty = "_";
-        difficulty += diff;
-    }
-    if (theme != "na")
-    {
-        type = "_";
-        type += theme;
-    }
-
     int passageCount = 0;
     int max = 10;
+    std::string fName = "";
 
     for (int i = 0; i < max; ++i)
     {
-        std::string fName = "";
-        fName += dir;
-        fName += prefix;
-        fName += count;
-        fName += difficulty;
-        fName += theme;
-        fName += '_';
-        fName += std::to_string(i);
-        fName += extension;
+        fName = generateFileName(cnt, diff, theme, i);
         bool open = fileCheck(fName);
 
         passageCount = i;
@@ -241,9 +178,72 @@ int word::countPassageGroup(int cnt, char diff, std::string& theme)
     return passageCount;
 }
 
+std::string generateFileName(int cnt, char diff, std::string theme, int passNumber) {
+    std::string dir = "../text/";
+    std::string prefix = "words";
+    std::string extension = ".txt";
+    std::string count = std::to_string(cnt);
+    std::string difficulty = "";
+    std::string type = "";
+    std::string number = std::to_string(passNumber);
+    if (diff != 'n')
+    {
+        difficulty = "_";
+        difficulty += diff;
+    }
+    if (theme != "na")
+    {
+        type = "_";
+        type += theme;
+    }
+
+    std::string fName = "";
+    fName += dir;
+    fName += count;
+    fName += '/';
+    fName += prefix;
+    fName += count;
+    fName += difficulty;
+    fName += type;
+    fName += '_';
+    fName += number;
+    fName += extension;
+
+    return fName;
+}
+
+}
 
 
+/* using namespace word;
 
+int main () {
+    std::srand(time(NULL));
+    int size = 0;
+    getTotalPassageNumber(size);
+    //size = countPassageGroup(50, 'n', "sp");
+    std::cout << size << std::endl;
+    std::string name = "../text/25/words25_di_0.txt";
+    if (fileCheck(name)) { std::cout << "file exists" << std::endl;}
+    else { std::cout << "doesn't exist" << std::endl;}  
 
+    char difficulty = 'n';
+    std::string theme = "di";
+
+     std::string test = generatePassage(25, 'n', "di");
+
+    std::cout << "Test is \"" << test << "\"" << std::endl;
+
+    
+    
+   std::vector<std::string> testList = generateWordList(difficulty, theme);
+
+    std::cout << "Size of list is " << testList.size() << std::endl;
+    std::cout << "list: ";
+
+    for (int i = 0; i < testList.size(); ++i) {
+        std::cout << testList.at(i) << std::endl;
+    }  
+};  */
 
 

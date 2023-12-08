@@ -1,17 +1,26 @@
-
-
+#ifndef TEXTDISPLAY_H
+#define TEXTDISPLAY_H
 
 #include <string>
 #include <vector>
+#include <thread>
+#include <stdio.h>
+#include <pthread.h>
+#include <sstream>
+#include <iostream>
+#include "words.h"
+#include <chrono>
 
 
 class TextDisplay {
     private:
-        std::string passage = "hey i just wanted to check in";
-        std::string userInput = "";
-        std::vector<std::string> wordList = {"James","Monica","Chris","testing","shoot"};
+        void wordOptions(char& difficulty, std::string& theme);
+        void passageSelect(std::string& passage, int& count);
+        void wordListSelect(std::vector<std::string>& wordList);
     public:
-        double timedDisplay();
-        int lifeDisplay();
+        double timedDisplay(std::string& userInput, std::string& passage, int& count);
+        double lifeDisplay(std::vector<std::string>& userInput, int& score, std::vector<std::string>& wordList);
 };
+
+#endif
 
